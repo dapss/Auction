@@ -1,0 +1,102 @@
+.card {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  width: 250px;
+  height: 400px;
+  overflow: hidden;
+  margin-right: 2%;
+}
+
+.card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.card-content {
+  padding-left: 15px;
+  padding-bottom: 15px;
+  padding-right: 15px;
+}
+
+.card-content h3 {
+  font-size: 20px;
+  font-weight: bold;
+  margin-top: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 200px; /* Adjust as per your requirement */
+}
+
+.card-content h4 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical; 
+  font-size: 16px;
+  margin-top: 0;
+  white-space: normal;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 200px; /* Adjust as per your requirement */
+}
+
+.card-content p {
+  font-size: 16px;
+  line-height: 1.5;
+  margin-top: 1%;
+  color: #828282;
+}
+
+.card-row a {
+  display: inline-block;
+  /* background-color: #007bff;
+  color: #fff; */
+  padding: 5px 15px;
+  border-radius: 5px;
+  text-decoration: none;
+  margin-right: 1%;
+  margin-top: 2%;
+}
+
+.card-status {
+  padding: 20px;
+  font-weight: bold;
+}
+
+.card-status.OPEN h3 {
+  font-size: 15px;
+  margin-top: auto;
+  background-color: lime;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.card-status.CLOSED h3 {
+  font-size: 15px;
+  margin-top: auto;
+  background-color: red;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.card-row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 2%;
+  margin-left: 2%;
+  align-items: center;
+}
+
+.card-row > div {
+  flex-basis: 25%;
+}
+
+.action {
+  display: flex;
+}
+
+.action-content {
+  margin-right: 2%;
+}

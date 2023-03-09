@@ -1,0 +1,36 @@
+/* body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f8f8;
+  } */
+  
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  h1 {
+    font-size: 24px;
+    margin-top: 0;
+  }
+  
+  p {
+    font-size: 16px;
+    line-height: 1.5;
+  }
+  
+  img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+  }
+
+  .action {
+    display: flex;
+  }
+  
+  .action-content {
+    margin-right: 2%;
+  }
