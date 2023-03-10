@@ -70,6 +70,7 @@
     margin-right: 2%;
     color: red;
     align-items: center;
+    height: 1px;
   }
 
   /* .card-status.OPEN h3 {

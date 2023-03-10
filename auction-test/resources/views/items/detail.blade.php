@@ -17,7 +17,7 @@
                     @csrf
                     @method('DELETE')
                     {{-- <a href="" type="submit" style="color: red">Delete Auction</a> --}}
-                    <a class="action-content" type="submit">Delete</a>
+                    <button class="action-content" type="submit">Delete</button>
                   </div>
                 </form>
                 
@@ -40,7 +40,19 @@
                     <h3>{{ $item->deskripsi_barang }}</h3>
                     
                     {{-- <div class="card-status {{ $item->status == 'OPEN' ? 'OPEN' : 'CLOSED' }}"> --}}
-                    <a href="/start-auction/{{ $item->id_barang }}">
+
+                        <a href="/start-auction/{{ $item->id_barang }}">
+                            {{-- <button @if($item->status == 'CLOSED') disabled @endif>Start Bid!</button> --}}
+                            @if($item->status == 'CLOSED')
+                                <button style="background-color: red" hidden>BID CLOSED</button>
+                            @else
+                                <button style="background-color: lime">START BID</button>
+                            @endif
+                        </a>
+
+
+
+                    <a href="/bid/{{ $item->id_barang }}">
                         {{-- <button @if($item->status == 'CLOSED') disabled @endif>Start Bid!</button> --}}
                         @if($item->status == 'CLOSED')
                             <button style="background-color: red" disabled>BID CLOSED</button>

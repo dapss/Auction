@@ -24,21 +24,43 @@
                   </div>
                 </div> --}}
                 <div class="card-row">
-                    @foreach ($list as $item)
-                    {{-- {{ dd($item) }} --}}
-                    <a href="">
-                      <div class="card">
-                        <img src="https://res3.grays.com/handlers/imagehandler.ashx?t=sh&id=37044205&s=fl&index=0&ts=638061691700000000" alt="Image">
-                        <div class="card-content">
-                            <h3>2014 Yamaho Eclipse</h3>
-                            <p class="price">$1.000</p>
-                            
-                            <a href="/detail/{{ $item->id }}">Bid Now!</a>
-                            <a href="">Bid Now!</a>
+                  @foreach ($listLelang as $item)
+                  {{-- {{ dd($item) }} --}}
+                  <a href="{{ route('detail.show' , $item->id_barang) }}">
+                    <div class="card">
+                      <img src="https://res3.grays.com/handlers/imagehandler.ashx?t=sh&id=37044205&s=fl&index=0&ts=638061691700000000" alt="Image">
+                      
+                      {{-- @foreach ($list as $item2)
+                        <div class="card-status {{ $item2->status == 'OPEN' ? 'OPEN' : 'CLOSED' }}">
+                          <h3>{{ $item2->status }}</h3>
                         </div>
-                      </div>  
-                    </a>
-                    @endforeach
+                      @endforeach --}}
+
+                      <div class="card-status {{ $item->status == 'OPEN' ? 'OPEN' : 'CLOSED' }}">
+                        <h3>{{ $item->status }}</h3>
+                      </div>
+                      
+                      <div class="card-content">
+                          <h3>{{ $item->nama_barang }}</h3>
+                          <h5>Auctioneer: <span style="color: red">{{ $item->auctioneer }}</span></h5>
+                          <h5>Last Bidder: <span style="color: red">{{ $item->user_name }}</span></h5>
+                          <h4>Highest Bid: <span style="color: red">@money($item->harga_akhir)</span></h4>
+                          <p></p>
+                          
+                          {{-- <p>
+                            The price is:
+                            <x-format-amount :amount="$item->price" />
+                          </p> --}}
+                        
+                          
+                          {{-- <a href="/detail/{{ $item->id }}">Bid Now!</a> --}}
+                          {{-- <a href="{{ route('detail.show' , $item->id_barang) }}">Bid Now!</a> --}}
+                          
+                      </div>
+                      
+                    </div>  
+                  </a>
+                  @endforeach
                     {{-- <div class="card">
                       <img src="https://res0.grays.com/handlers/imagehandler.ashx?t=sh&id=37607176&s=fl&index=0&ts=638125049590000000" alt="Image">
                       <div class="card-content">

@@ -42,6 +42,15 @@
   max-width: 200px; /* Adjust as per your requirement */
 }
 
+.card-content h5 {
+  font-size: 16px;
+  margin-top: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 200px; /* Adjust as per your requirement */
+}
+
 .card-content p {
   font-size: 16px;
   line-height: 1.5;

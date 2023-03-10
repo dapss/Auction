@@ -51,6 +51,7 @@ Route::delete('/detail/{id}', [CRUD::class])->name('destroy');
 
 Route::get('/edit/{id}', [CRUD::class, 'edit']);
 Route::post('update', [CRUD::class, 'update'])->name('update');
+
 // Route::get('/edit', [DataController::class, 'edit']);
 // Route::get('/edit', function () {
 //     return view('editPage');
@@ -58,10 +59,13 @@ Route::post('update', [CRUD::class, 'update'])->name('update');
 
 
 
-Route::post('start', [CRUD::class, 'create']);
+Route::post('start', [LelangController::class, 'create']);
 Route::get('/auction', [LelangController::class, 'index'])->name('auction');
+// Route::get('/auction', [CRUD::class, 'index'])->name('auction');
 Route::get('/start-auction', [DataController::class, 'start']);
 
+Route::post('updateLelang', [LelangController::class, 'update'])->name('updateLelang');
+Route::get('/bid/{id}', [LelangController::class, 'bid']);
 
 Route::get('/start-auction/{id}', [LelangController::class, 'index2']);
 

@@ -52,8 +52,8 @@
                         <label for="status">Status:</label>
                         <select name="status" id="status">
                             <option disabled selected value="">Please select a status</option>
-                            <option value="OPEN">Open</option>
-                            <option value="CLOSED">Closed</option>
+                            <option value="OPEN" {{ $Info->status == "OPEN" ? 'selected' : '' }}>Open</option>
+                            <option value="CLOSED" {{ $Info->status == "CLOSED" ? 'selected' : '' }}>Closed</option>
                         </select>
                         <span style="color : red">@error('status'){{ $message }}@enderror</span>
                     
