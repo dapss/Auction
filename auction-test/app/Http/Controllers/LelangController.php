@@ -110,6 +110,7 @@ class LelangController extends Controller
      * @param  \App\Models\Lelang  $lelang
      * @return \Illuminate\Http\Response
      */
+
     public function bid($id)
     {
         //

@@ -104,6 +104,12 @@ class CRUD extends Controller
                             'tanggal'=>$request->input('date'),
                             'status'=>$request->input('status'),
                         ]);
+
+                        $updating = DB::table('tb_lelang')
+                        ->where('id_lelang', $request->input('id'))
+                        ->update([
+                            'status'=>$request->input('status'),
+                        ]);
         return redirect('dashboard');
     }
 
