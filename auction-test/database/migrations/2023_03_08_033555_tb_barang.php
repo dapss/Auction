@@ -14,11 +14,11 @@ return new class extends Migration
     public function up()
     {
         Schema::create('tb_barang', function (Blueprint $table) {
-            $table->integer('id_barang')->primary();
+            $table->increments('id_barang');
             $table->string('nama_barang');
             $table->date('tanggal');
             $table->integer('harga_awal');
-            $table->string('deskripsi_barang');
+            $table->string('deskripsi_barang', 500);
             $table->string('status');
             $table->timestamps();
         });

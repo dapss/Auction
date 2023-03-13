@@ -29,17 +29,19 @@
                   {{-- {{ dd($item) }} --}}
                   <a href="{{ route('detail.show' , $item->id_barang) }}">
                     <div class="card">
-                      <img src="https://res3.grays.com/handlers/imagehandler.ashx?t=sh&id=37044205&s=fl&index=0&ts=638061691700000000" alt="Image">
+                      <img src="images/auction.jpg" alt="Image">
                       
                       {{-- @foreach ($list as $item2)
                         <div class="card-status {{ $item2->status == 'OPEN' ? 'OPEN' : 'CLOSED' }}">
                           <h3>{{ $item2->status }}</h3>
                         </div>
                       @endforeach --}}
-
-                      <div class="card-status {{ $item->status == 'OPEN' ? 'OPEN' : 'CLOSED' }}">
-                        <h3>{{ $item->status }}</h3>
-                      </div>
+                      {{-- @foreach ($list as $item) --}}
+                        <div class="card-status {{ $item->status == 'OPEN' ? 'OPEN' : 'CLOSED' }}">
+                          <h3>{{ $item->status }}</h3>
+                        </div>
+                      {{-- @endforeach --}}
+                      
                       
                       <div class="card-content">
                           <h3>{{ $item->nama_barang }}</h3>
@@ -75,8 +77,6 @@
         </div>
     </div>
 </x-app-layout>
-
-
 
 
 {{-- @foreach ($list as $item)

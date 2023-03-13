@@ -19,19 +19,14 @@ class LelangController extends Controller
     {
         //
         $listLelang = Lelang::all();
+        $list = ListCrud::all();
         return view('auction', compact('listLelang'));
     }
 
-    // public function index2($id)
+    // public function index3()
     // {
-    //     $row = DB::table('tb_barang')
-    //     ->where('id_barang', $id)
-    //     ->get();
-    //     $data = [
-    //         'Info'=>$row,
-    //         'Title'=>'Edit'
-    //     ];
-    //     return view('auction.start', $data);
+    //     $list = ListCrud::all();
+    //     return view('auction', compact('list'));
     // }
 
     public function index2($id) {
@@ -158,6 +153,12 @@ class LelangController extends Controller
                             'harga_akhir' => $request['bid'],
                             'user_name'=>$request->input('name'),
                             'auctioneer'=>$request->input('auctioneer'),
+                            'status'=>$request->input('status'),
+                        ]);
+
+        $updatings = DB::table('tb_barang')
+                        ->where('id_barang', $request->input('id'))
+                        ->update([
                             'status'=>$request->input('status'),
                         ]);
         return redirect('auction');

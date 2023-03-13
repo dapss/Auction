@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('tb_history_lelang', function (Blueprint $table) {
-            $table->integer('id_history')->primary();
+            $table->increments('id_history');
             $table->integer('id_barang');
             $table->integer('penawaran_harga');
             $table->integer('id_user');

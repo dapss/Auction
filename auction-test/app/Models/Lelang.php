@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\ListCrud;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Lelang extends Model
 {
@@ -11,4 +12,12 @@ class Lelang extends Model
     protected $primaryKey = 'id_lelang';
     protected $guarded = ['id_lelang'];
     protected $table = 'tb_lelang';
+
+
+    public function user()
+    {
+        return $this->belongsTo(ListCrud::class);
+    }
+
 }
+

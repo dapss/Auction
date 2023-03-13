@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('tb_masyarakat', function (Blueprint $table) {
-            $table->integer('id_user')->primary();
+            $table->integer('id_user');
             $table->string('nama_user');
             $table->string('username');
             $table->string('password');

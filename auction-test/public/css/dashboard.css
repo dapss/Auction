@@ -109,3 +109,9 @@
 .action-content {
   margin-right: 2%;
 }
+
+.action-content a {
+  background: linear-gradient(90deg, #00d2ff 0%, #3a47d5 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}

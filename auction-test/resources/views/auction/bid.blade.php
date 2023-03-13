@@ -56,9 +56,9 @@
                         <input type="date" id="date" name="date" value="{{ $Info->tanggal_lelang }}">
                         <span style="color : red">@error('date'){{ $message }}@enderror</span>
 
-                        <label for="status">Status:</label>
-                        <select name="status" id="status">
-                        {{-- <select name="status" id="status" style="display: none;"> --}}
+                        {{-- <label for="status">Status:</label> --}}
+                        {{-- <select name="status" id="status"> --}}
+                        <select name="status" id="status" style="display: none;">
                             <option disabled selected value="">Please select a status</option>
                             <option value="OPEN" {{ $Info->status == "OPEN" ? 'selected' : '' }}>Open</option>
                             <option value="CLOSED" {{ $Info->status == "CLOSED" ? 'selected' : '' }}>Closed</option>

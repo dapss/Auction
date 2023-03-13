@@ -6,7 +6,7 @@
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             <div class="action">
                 <div class="action-content">
-                  <a>Start an Auction</a>
+                  <a>Edit an Auction</a>
                 </div>
             </div>
         </h2>
@@ -38,7 +38,7 @@
                         <span style="color : red">@error('id'){{ $message }}@enderror</span>
                         
                         <label for="name">Name:</label>
-                        <input type="text" id="name" name="name" value="{{ $Info->nama_barang }}">
+                        <input type="text" id="name" name="name" value="{{ $Info->nama_barang }}" readonly>
                         <span style="color : red">@error('name'){{ $message }}@enderror</span>
 
                         <label for="description">Description:</label>

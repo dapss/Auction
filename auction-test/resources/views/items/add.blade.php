@@ -66,7 +66,7 @@
                         {{-- <label for="password">Password:</label>
                         <input type="password" id="password" name="password"> --}}
                     
-                        <input type="submit" value="Submit">
+                        <input type="submit" class="gradient-button" value="Submit">
                     </form>
             </div>
         </div>

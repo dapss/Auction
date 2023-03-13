@@ -68,6 +68,7 @@ Route::post('updateLelang', [LelangController::class, 'update'])->name('updateLe
 Route::get('/bid/{id}', [LelangController::class, 'bid']);
 
 Route::get('/start-auction/{id}', [LelangController::class, 'index2']);
+// Route::get('/auction', [LelangController::class, 'index3']);
 
 
 

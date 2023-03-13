@@ -14,12 +14,14 @@ return new class extends Migration
     public function up()
     {
         Schema::create('tb_lelang', function (Blueprint $table) {
-            $table->integer('id_lelang')->primary();
+            $table->increments('id_lelang');
             $table->integer('id_barang');
+            $table->string('nama_barang');
             $table->date('tanggal_lelang');
             $table->integer('harga_akhir');
-            $table->integer('id_user');
-            $table->integer('id_petugas');
+            $table->string('user_name');
+            $table->string('auctioneer');
+            $table->string('status');
             $table->timestamps();
         });
     }
