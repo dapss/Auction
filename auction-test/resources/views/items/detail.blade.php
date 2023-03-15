@@ -12,14 +12,15 @@
                 <div class="action-content">
                   <a href="/edit/{{ $item->id_barang }}" style="color: #007bff">Edit Auction</a>
                 </div>
-                <form action="{{ route('destroy', $item->id_barang) }}" method="POST">
+
+                <a href="/delete/{{ $item->id_barang }}" type="submit" style="color: red">Delete Auction</a>
+                {{-- <form action="{{ route('destroy', $item->id_barang) }}" method="POST">
                 <div class="action-content">
                     @csrf
                     @method('DELETE')
-                    {{-- <a href="" type="submit" style="color: red">Delete Auction</a> --}}
                     <button class="action-content" type="submit">Delete</button>
                   </div>
-                </form>
+                </form> --}}
                 
             </div>
             
@@ -33,7 +34,7 @@
                 @foreach ($list as $item)
                 <div class="container">
                     <div class="align-center">
-                        <img src="https://res3.grays.com/handlers/imagehandler.ashx?t=sh&id=37044205&s=fl&index=0&ts=638061691700000000" alt="Product Image">
+                        <img src="/bids/{{ $item->lots }}" alt="Image">
                     </div>
                     <h1>{{ $item->nama_barang }}</h1>
                     <p>Starting Price: @money($item->harga_awal)</p>
@@ -49,9 +50,7 @@
                                 <button style="background-color: lime">START BID</button>
                             @endif
                         </a>
-
-
-
+                        
                     <a href="/bid/{{ $item->id_barang }}">
                         {{-- <button @if($item->status == 'CLOSED') disabled @endif>Start Bid!</button> --}}
                         @if($item->status == 'CLOSED')
@@ -59,6 +58,12 @@
                         @else
                             <button style="background-color: lime">PLACE BID</button>
                         @endif
+                    </a>
+
+                    
+                    <a href="/close/{{ $item->id_barang }}">
+                        {{-- <button @if($item->status == 'CLOSED') disabled @endif>Start Bid!</button> --}}
+                            <button style="background-image: linear-gradient(90deg, #00d2ff 0%, #3a47d5 100%); color: white">CLOSE BID</button>
                     </a>
                     {{-- </div> --}}
                   </div>     

@@ -55,6 +55,7 @@ class LelangController extends Controller
             'name'=>'required',
             'auctioneer'=>'required',
             'status'=>'required',
+            'lots'=>'required',
         ]);
 
         $query = DB::table('tb_lelang')->insert([
@@ -66,15 +67,16 @@ class LelangController extends Controller
             'user_name'=>$request->input('name'),
             'auctioneer'=>$request->input('auctioneer'),
             'status'=>$request->input('status'),
+            'lots'=>$request->input('lots'),
         ]);
 
-        if($query) {
-            return back()->with('success', 'Data have been successfuly inserted');
-        } else {
-            return back()->with('fail', 'Something went wrong');
-        }
+        // if($query) {
+        //     return back()->with('success', 'Data have been successfuly inserted');
+        // } else {
+        //     return back()->with('fail', 'Something went wrong');
+        // }
 
-        return redirect('dashboard');
+        return redirect('auction');
     }
 
     /**
@@ -170,8 +172,12 @@ class LelangController extends Controller
      * @param  \App\Models\Lelang  $lelang
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Lelang $lelang)
+    public function destroy($id)
     {
         //
+        $item = Lelang::findOrFail($id);
+        $item->delete();
+
+        return redirect()->route('dashboard')->with('success', 'Item deleted successfully');
     }
 }

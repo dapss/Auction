@@ -28,7 +28,7 @@
                   {{-- {{ dd($item) }} --}}
                   <a href="{{ route('detail.show' , $item->id_barang) }}">
                     <div class="card">
-                      <img src="https://res3.grays.com/handlers/imagehandler.ashx?t=sh&id=37044205&s=fl&index=0&ts=638061691700000000" alt="Image">
+                      <img src="bids/{{ $item->lots }}" alt="Image">
                       <div class="card-status {{ $item->status == 'OPEN' ? 'OPEN' : 'CLOSED' }}">
                         <h3>{{ $item->status }}</h3>
                         {{-- <h3 class="card-status {{ $item->status == 'OPEN' ? 'OPEN' : 'CLOSED' }}">{{ $item->status }}</h3> --}}

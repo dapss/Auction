@@ -115,3 +115,110 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
+
+table {
+  border-collapse: separate;
+  border-spacing: 0;
+  width: 100%;
+  margin-bottom: 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 14px;
+  text-align: left;
+  color: #444;
+  background-color: #fff;
+  border-radius: 5px;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+table th, table td {
+  padding: 15px;
+  border-bottom: 1px solid #ddd;
+  vertical-align: middle;
+}
+table th {
+  background-color: #f2f2f2;
+  color: #555;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  /* text-align: center; */
+}
+table tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+table tbody tr:hover {
+  background-color: #f5f5f5;
+}
+table tbody td:before {
+  /* content: attr(data-label); */
+  display: inline-block;
+  color: #888;
+  font-weight: bold;
+  margin-right: 5px;
+  width: 100px;
+}
+/* @media (max-width: 768px) {
+  table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+  table thead, table tbody, table th, table td, table tr {
+    display: block;
+  }
+  table th {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+  table tbody td {
+    border-bottom: none;
+    position: relative;
+    padding-left: 50%;
+  }
+  table tbody td:before {
+    position: absolute;
+    top: 6px;
+    left: 6px;
+    width: 45%;
+  }
+} */
+
+.history-action {
+  display: flex;
+  padding: 20px;
+}
+
+/* .button-right {
+  float: right; */
+  /* margin-left: 80%; */
+/* } */
+
+.btn {
+  display: inline-block;
+  padding: 15px 25px;
+  border-radius: 40px;
+  background: linear-gradient(90deg, #00d2ff 0%, #3a47d5 100%);
+  color: #fff;
+  font-size: 10px;
+  font-weight: bold;
+  text-decoration: none;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s ease-in-out;
+  cursor: pointer;
+  
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.3);
+}
+
+.btn:active {
+  transform: translateY(0px);
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
+}

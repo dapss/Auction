@@ -15,10 +15,11 @@ return new class extends Migration
     {
         Schema::create('tb_history_lelang', function (Blueprint $table) {
             $table->increments('id_history');
-            $table->integer('id_barang');
+            $table->string('nama_barang');
             $table->integer('penawaran_harga');
-            $table->integer('id_user');
-            $table->integer('id_lelang');
+            $table->string('user_name');
+            $table->string('auctioneer');
+            $table->date('tanggal_lelang');
             $table->timestamps();
         });
     }

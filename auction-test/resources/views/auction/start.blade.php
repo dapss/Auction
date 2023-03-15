@@ -57,11 +57,12 @@
                         <input type="date" id="date" name="date" value="{{ old('date') }}">
                         <span style="color : red">@error('date'){{ $message }}@enderror</span>
 
-                        <label for="status">Status:</label>
-                        <select name="status" id="status">
+                        {{-- <label for="status">Status:</label> --}}
+                        {{-- <select name="status" id="status"> --}}
+                        <select name="status" id="status" style="display:none;">
                             <option disabled selected value="">Please select a status</option>
-                            <option value="OPEN">Open</option>
-                            <option value="CLOSED">Closed</option>
+                            <option value="OPEN" {{ $Info->status == "OPEN" ? 'selected' : '' }}>Open</option>
+                            <option value="CLOSED" {{ $Info->status == "CLOSED" ? 'selected' : '' }}>Closed</option>
                         </select>
                         <span style="color : red">@error('status'){{ $message }}@enderror</span>
 
@@ -72,6 +73,9 @@
                         <label for="auctioneer">Auctioneer:</label>
                         <input type="text" id="auctioneer" name="auctioneer" value="">
                         <span style="color : red">@error('auctioneer'){{ $message }}@enderror</span>
+
+                        <input type="hidden" id="lots" name="lots" value="{{ $Info->lots }}">
+                        <span style="color : red">@error('lots'){{ $message }}@enderror</span>
 
                         
                     

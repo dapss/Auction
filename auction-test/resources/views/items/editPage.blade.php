@@ -18,7 +18,7 @@
                 {{-- <div class="p-6 text-gray-900">
                     {{ __("Start an Auction") }}
                 </div> --}}
-                    <form action="{{ route('update') }}" method="post">
+                    <form action="{{ route('update') }}" method="post" enctype="multipart/form-data">
 
                         @if(Session::get('success'))
                             <div class="alert alert-success">
@@ -60,6 +60,10 @@
                         <label for="date">Date:</label>
                         <input type="date" id="date" name="date" value="{{ $Info->tanggal }}">
                         <span style="color : red">@error('date'){{ $message }}@enderror</span>
+
+                        {{-- <label for="lots">Image:</label>
+                        <input type="file" id="lots" name="lots" value="">
+                        <span style="color : red">@error('lots'){{ $message }}@enderror</span> --}}
                     
                         {{-- <label for="password">Password:</label>
                         <input type="password" id="password" name="password"> --}}

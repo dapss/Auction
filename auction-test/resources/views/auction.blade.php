@@ -29,7 +29,7 @@
                   {{-- {{ dd($item) }} --}}
                   <a href="{{ route('detail.show' , $item->id_barang) }}">
                     <div class="card">
-                      <img src="images/auction.jpg" alt="Image">
+                      <img src="/bids/{{ $item->lots }}" alt="Image">
                       
                       {{-- @foreach ($list as $item2)
                         <div class="card-status {{ $item2->status == 'OPEN' ? 'OPEN' : 'CLOSED' }}">
@@ -48,17 +48,6 @@
                           <h5>Auctioneer: <span style="color: red">{{ $item->auctioneer }}</span></h5>
                           <h5>Last Bidder: <span style="color: red">{{ $item->user_name }}</span></h5>
                           <h4>Highest Bid: <span style="color: red">@money($item->harga_akhir)</span></h4>
-                          <p></p>
-                          
-                          {{-- <p>
-                            The price is:
-                            <x-format-amount :amount="$item->price" />
-                          </p> --}}
-                        
-                          
-                          {{-- <a href="/detail/{{ $item->id }}">Bid Now!</a> --}}
-                          {{-- <a href="{{ route('detail.show' , $item->id_barang) }}">Bid Now!</a> --}}
-                          
                       </div>
                       
                     </div>  

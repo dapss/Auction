@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('user_name');
             $table->string('auctioneer');
             $table->string('status');
+            $table->string('lots');
             $table->timestamps();
         });
     }

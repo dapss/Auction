@@ -36,4 +36,9 @@ class DataController extends Controller
     {
         return view('auction.bid');
     }
+
+    public function history(Request $request): View
+    {
+        return view('auction.history');
+    }
 }

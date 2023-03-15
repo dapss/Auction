@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Lelang;
+use App\Models\ListCrud;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use App\Models\ListCrud;
 
 class CRUD extends Controller
 {
@@ -15,34 +16,35 @@ class CRUD extends Controller
         return view('dashboard', compact('list'));
     }
 
-    function addCRUD(Request $request) {
+    public function create()
+    {
+        return view('items.add');
+    }
+
+    public function store(Request $request) {
 
         $request->validate([
-            'name'=>'required',
-            // 'id'=>'required',
-            'description'=>'required',
-            'opening'=>'required',
-            'date'=>'required',
+            'nama_barang'=>'required',
+            'deskripsi_barang'=>'required',
+            'harga_awal'=>'required',
+            'tanggal'=>'required',
             'status'=>'required',
+            'lots'=>'required',
             
         ]);
 
-        $query = DB::table('tb_barang')->insert([
-            // 'id_barang'=>$request->input('id'),
-            'nama_barang'=>$request->input('name'),
-            'deskripsi_barang'=>$request->input('description'),
-            'harga_awal'=>$request->input('opening'),
-            'tanggal'=>$request->input('date'),
-            'status'=>$request->input('status'),
-        ]);
+        $input = $request->all();
 
-        if($query) {
-            return back()->with('success', 'Data have been successfuly inserted');
-        } else {
-            return back()->with('fail', 'Something went wrong');
+        if ($image = $request->file('lots')) {
+            $destinationPath = 'bids/';
+            $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
+            $image->move($destinationPath, $profileImage);
+            $input['lots'] = "$profileImage";
         }
+        
+        ListCrud::create($input);
 
-        return redirect('dashboard');
+        return redirect()->route('dashboard')->with('success', 'Data have been successfuly inserted');
     }
 
     // function show($id) {
@@ -66,8 +68,19 @@ class CRUD extends Controller
 
     public function destroy($id)
     {
-        $item = ListCrud::findOrFail($id);
-        $item->delete();
+        // $item = ListCrud::findOrFail($id);
+        // $item->delete();
+
+        // $item = Lelang::findOrFail($id);
+        // $item->delete();
+
+        $delete = DB::table('tb_barang')
+        ->where('id_barang', $id)
+        ->delete();
+
+        $delete = DB::table('tb_lelang')
+        ->where('id_barang', $id)
+        ->delete();
 
         return redirect()->route('dashboard')->with('success', 'Item deleted successfully');
     }
@@ -85,7 +98,7 @@ class CRUD extends Controller
         return view('items.editPage', $data);
     }
 
-    function update(Request $request) {
+    function update(Request $request, ListCrud $barang) {
         $request->validate([
             'name'=>'required',
             // 'id'=>'required',
@@ -93,7 +106,25 @@ class CRUD extends Controller
             'opening'=>'required',
             'date'=>'required',
             'status'=>'required',
+            // 'lots'=>'required',
         ]);
+
+        // $input = $request->all();
+
+        // if ($image = $request->file('lots')) {
+        //     $destinationPath = 'bids/';
+        //     $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
+        //     $image->move($destinationPath, $profileImage);
+        //     $input['lots'] = "$profileImage";
+        //     if ($barang->lots) {
+        //         unlink('bids/' . $barang->lots); // menghapus file gambar lama
+        //     }
+        // } else {
+        //     unset($input['lots']);
+        //     if ($barang->lots) {
+        //         unlink('bids/' . $barang->lots); // menghapus file gambar lama
+        //     }
+        // }
 
         $updating = DB::table('tb_barang')
                         ->where('id_barang', $request->input('id'))
@@ -103,14 +134,17 @@ class CRUD extends Controller
                             'harga_awal'=>$request->input('opening'),
                             'tanggal'=>$request->input('date'),
                             'status'=>$request->input('status'),
+                            // 'lots' => $request['lots'],
                         ]);
 
         $updatings = DB::table('tb_lelang')
-                        ->where('id_lelang', $request->input('id'))
+                        ->where('id_barang', $request->input('id'))
                         ->update([
                             'status'=>$request->input('status'),
                         ]);
+
         return redirect('dashboard');
+        
     }
 
 }

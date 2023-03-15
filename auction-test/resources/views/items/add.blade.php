@@ -18,8 +18,7 @@
                 {{-- <div class="p-6 text-gray-900">
                     {{ __("Start an Auction") }}
                 </div> --}}
-                    <form action="addCRUD" method="post">
-
+                    <form action="addCRUD" method="post" enctype="multipart/form-data">
                         @if(Session::get('success'))
                             <div class="alert alert-success">
                                 {{ Session::get('success') }}
@@ -37,17 +36,17 @@
                         <input type="text" id="id" name="id" value="{{ old('id') }}">
                         <span style="color : red">@error('id'){{ $message }}@enderror</span> --}}
                         
-                        <label for="name">Name:</label>
-                        <input type="text" id="name" name="name" value="{{ old('name') }}">
-                        <span style="color : red">@error('name'){{ $message }}@enderror</span>
+                        <label for="nama_barang">Name:</label>
+                        <input type="text" id="nama_barang" name="nama_barang" value="{{ old('nama_barang') }}">
+                        <span style="color : red">@error('nama_barang'){{ $message }}@enderror</span>
 
-                        <label for="description">Description:</label>
-                        <input type="text" id="description" name="description" value="{{ old('description') }}">
-                        <span style="color : red">@error('description'){{ $message }}@enderror</span>
+                        <label for="deskripsi_barang">Description:</label>
+                        <input type="text" id="deskripsi_barang" name="deskripsi_barang" value="{{ old('deskripsi_barang') }}">
+                        <span style="color : red">@error('deskripsi_barang'){{ $message }}@enderror</span>
 
-                        <label for="opening">Opening Price:</label>
-                        <input type="text" id="opening" name="opening" value="{{ old('opening') }}">
-                        <span style="color : red">@error('opening'){{ $message }}@enderror</span>
+                        <label for="harga_awal">Opening Price:</label>
+                        <input type="text" id="harga_awal" name="harga_awal" value="{{ old('harga_awal') }}">
+                        <span style="color : red">@error('harga_awal'){{ $message }}@enderror</span>
 
                         <label for="status">Status:</label>
                         <select name="status" id="status">
@@ -57,9 +56,13 @@
                         </select>
                         <span style="color : red">@error('status'){{ $message }}@enderror</span>
                     
-                        <label for="date">Date:</label>
-                        <input type="date" id="date" name="date" value="{{ old('date') }}">
-                        <span style="color : red">@error('date'){{ $message }}@enderror</span>
+                        <label for="tanggal">Date:</label>
+                        <input type="date" id="tanggal" name="tanggal" value="{{ old('tanggal') }}">
+                        <span style="color : red">@error('tanggal'){{ $message }}@enderror</span>
+
+                        <label for="lots">Image:</label>
+                        <input type="file" id="lots" name="lots" value="{{ old('lots') }}">
+                        <span style="color : red">@error('lots'){{ $message }}@enderror</span>
 
                         
                     
