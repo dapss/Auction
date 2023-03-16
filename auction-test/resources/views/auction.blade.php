@@ -24,28 +24,23 @@
                 <form action="{{ route('auction') }}" method="GET">
                   <div class="action-row">
                     <div class="title">Auction</div> 
+                    
                     <div class="actions">
                           <select name="status" id="status" onchange="this.form.submit()">
                             <option value="all" {{ $status == 'all' ? 'selected' : '' }}>All</option>
                             <option value="open" {{ $status == 'open' ? 'selected' : '' }}>Open</option>
                             <option value="closed" {{ $status == 'closed' ? 'selected' : '' }}>Closed</option>
                           </select>
-{{-- 
-                          <div class="dropdown">
-                            <button class="dropdown-toggle">Dropdown</button>
-                            <div class="dropdown-menu">
-                              <a href="#">Option 1</a>
-                              <a href="#">Option 2</a>
-                              <a href="#">Option 3</a>
-                            </div>
-                          </div> --}}
-                      <div class="search">
-                        <input type="text" placeholder="Search...">
-                        <button>Search</button>
-                      </div>
+                      <form action="{{ route('auction') }}" method="GET">
+                        <div class="search">
+                          <input type="text" name="search" placeholder="Search...">
+                          <button>Search</button>
+                        </div>
+                      </form>
                     </div>
                   </div>
                 </form>
+                
                 
                 
                 

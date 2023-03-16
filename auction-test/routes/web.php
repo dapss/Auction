@@ -56,6 +56,7 @@ Route::get('/auction', [LelangController::class, 'index'])->name('auction');
 Route::post('updateLelang', [LelangController::class, 'update'])->name('updateLelang');
 Route::get('/bid/{id}', [LelangController::class, 'bid']);
 Route::get('/start-auction/{id}', [LelangController::class, 'index2']);
+// Route::get('/search', [LelangController::class, 'search'])->name('search');
 // Route::delete('/detail/{id}', [LelangController::class])->name('destroy');
 Route::get('/test', function () {
     return "test";

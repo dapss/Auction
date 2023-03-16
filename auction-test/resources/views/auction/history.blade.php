@@ -17,12 +17,41 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="history-action">
-                    {{-- <div class="text-left p-6 text-gray-900" style="font-weight: bold">
+                {{-- <div class="history-action">
+                    <div class="text-left p-6 text-gray-900" style="font-weight: bold">
                         {{ __("History") }}
-                    </div> --}}
+                    </div>
                     <button class="btn">Generate PDF</button>
-                </div>
+                    <form action="{{ route('history') }}" method="GET">
+                        <input type="text" name="search" value="{{ old('search') }}" placeholder="Search...">
+                        <button type="submit">Search</button>
+                    </form>
+                </div> --}}
+
+                <form action="{{ route('history') }}" method="GET">
+                    <div class="action-row">
+                      <div class="title">
+                        {{-- <button type="submit">GENERATE PDF</button> --}}
+                        <div class="history-action">
+                            <button class="btn">Generate PDF</button>
+                        </div>
+                        </div> 
+                      <div class="actions">
+                            {{-- <input type="text" name="search" value="{{ old('search') }}" placeholder="Search...">
+                            <button type="submit">Search</button> --}}
+                            {{-- <div class="generate">
+                                <button type="submit">GENERATE PDF</button>
+                            </div>
+                            <div class="reset">
+                                <button type="submit">RESET</button>
+                            </div> --}}
+                            <div class="search">
+                                <input type="text" name="search" placeholder="Search..." value="{{ old('search') }}">
+                                <button type="submit">Search</button>
+                            </div>
+                      </div>
+                    </div>
+                  </form>
                 
                 <div>
                     <table>
@@ -34,42 +63,26 @@
                                 <th>Bidder</th>
                                 <th>Auctioneer</th>
                                 <th>Date</th>
-                                {{-- <th>Action</th> --}}
                             </tr>
                         </thead>
-                        @foreach ($list as $item)
                         <tbody>
+                            @foreach ($list as $item)
                             <tr>
                                 <td>{{ $item->id_history }}</td>
-                                <td >{{ $item->nama_barang}}</td>
-                                <td >@money($item->penawaran_harga)</td>
-                                <td >{{ $item->user_name }}</td>
-                                <td >{{ $item->auctioneer }}</td>
-                                <td >{{ \Carbon\Carbon::parse($item->tanggal_lelang)->format('d-m-Y') }}</td>
-                                {{-- <td ><i class="far fa-file-pdf"></i></td> --}}
+                                <td>{{ $item->nama_barang }}</td>
+                                <td>@money($item->penawaran_harga)</td>
+                                <td>{{ $item->user_name }}</td>
+                                <td>{{ $item->auctioneer }}</td>
+                                <td>{{ \Carbon\Carbon::parse($item->tanggal_lelang)->format('d-m-Y') }}</td>
                             </tr>
-                            {{-- <tr>
-                                <td data-label="First Name">Jane</td>
-                                <td data-label="Last Name">Smith</td>
-                                <td data-label="Email Address">janesmith@example.com</td>
-                                <td data-label="Phone Number">(555) 555-5555</td>
-                            </tr>
-                            <tr>
-                                <td data-label="First Name">Bob</td>
-                                <td data-label="Last Name">Johnson</td>
-                                <td data-label="Email Address">bjohnson@example.com</td>
-                                <td data-label="Phone Number">(999) 999-9999</td>
-                            </tr>
-                            <tr>
-                                <td data-label="First Name">Samantha</td>
-                                <td data-label="Last Name">Lee</td>
-                                <td data-label="Email Address">samanthalee@example.com</td>
-                                <td data-label="Phone Number">(555) 123-4567</td>
-                            </tr> --}}
-                            </tbody>
-                        @endforeach
-                        
-                        </table>
+                            @endforeach
+                        </tbody>
+                    </table>
+                    
+                    <div class="pagination">
+                        {{ $list->links() }}
+                    </div>                    
+                    
                 </div>
                 </div>      
             </div>

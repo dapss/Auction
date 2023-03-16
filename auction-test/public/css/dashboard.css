@@ -210,8 +210,8 @@ table tbody td:before {
 } */
 
 .history-action {
-  display: flex;
-  padding: 20px;
+  /* display: flex; */
+  /* padding: 0px; */
 }
 
 /* .button-right {
@@ -222,7 +222,7 @@ table tbody td:before {
 .btn {
   display: inline-block;
   padding: 15px 25px;
-  border-radius: 40px;
+  border-radius: 10px;
   /* background: linear-gradient(90deg, #00d2ff 0%, #3a47d5 100%); */
   background-color: #333;
   color: #fff;
@@ -420,4 +420,8 @@ input[type="text"] {
   cursor: pointer;
   transition: all 0.3s ease-in-out;
   letter-spacing: 2px;
+}
+
+.pagination {
+  margin: 15px;
 }

@@ -14,11 +14,21 @@ class HistoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         //
-        $list = History::all();
-        return view('auction.history', compact('list'));
+        $searchTerm = $request->input('search');
+        $data = DB::table('tb_history_lelang')
+               ->where('nama_barang', 'LIKE', '%'.$searchTerm.'%')
+               ->orWhere('penawaran_harga', 'LIKE', '%'.$searchTerm.'%')
+               ->orWhere('user_name', 'LIKE', '%'.$searchTerm.'%')
+               ->orWhere('auctioneer', 'LIKE', '%'.$searchTerm.'%')
+               ->orWhere('tanggal_lelang', 'LIKE', '%'.$searchTerm.'%')
+            //    ->orderBy('id_history', 'asc')
+               ->paginate(7);
+        $list = History::orderBy('id_history', 'desc')->paginate(7);
+
+        return view('auction.history', ['list' => $data], compact('list'));
     }
 
     /**
@@ -72,7 +82,7 @@ class HistoryController extends Controller
         //     return back()->with('fail', 'Something went wrong');
         // }
 
-        return view('auction.history');
+        return redirect('history');
     }
 
     /**

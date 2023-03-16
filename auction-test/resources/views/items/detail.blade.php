@@ -77,14 +77,22 @@
                                 @can('view-petugas-dashboard')
                                 <a href="/close/{{ $item->id_barang }}">
                                     @if($item->status == 'CLOSED')
-                                        <button style="background-color: red" disabled>BID CLOSED</button>
+                                        <button style="background-color: red" hidden>BID CLOSED</button>
                                     @else
                                         <button style="background-image: linear-gradient(90deg, #00d2ff 0%, #3a47d5 100%); color: white; letter-spacing: 1px; font-weight: bold;">CLOSE BID</button>
                                     @endif  
                                 </a>
                                 @endcan
                             </div>
-                            
+                        </div>
+                        <div>
+                            @can('view-petugas-dashboard')
+                            <a href="/close/{{ $item->id_barang }}">
+                                @if($item->status == 'CLOSED')
+                                    <button style="background-color: red" disabled>BID CLOSED</button>
+                                @endif  
+                            </a>
+                            @endcan
                         </div>
                         
                     @endif

@@ -17,14 +17,6 @@ class LelangController extends Controller
      */
     public function index(Request $request)
     {
-        //
-        // $listLelang = Lelang::all();
-        // $listLelang = Lelang::where('status', 'open')->orderBy('created_at', 'desc')->get();
-        // $listLelang = Lelang::orderByRaw("CASE WHEN status = 'open' THEN 1 WHEN status = 'closed' THEN 2 ELSE 3 END")->orderBy('created_at', 'desc')->get();
-
-        // $status = $request->input('status', 'open');
-        // $listLelang = Lelang::where('status', $status)->orderBy('created_at', 'desc')->get();
-
         $status = $request->input('status', 'all');
         if ($status == 'all') {
             $listLelang = Lelang::orderByRaw("CASE WHEN status = 'open' THEN 1 WHEN status = 'closed' THEN 2 ELSE 3 END")
@@ -33,6 +25,12 @@ class LelangController extends Controller
         } else {
             $listLelang = Lelang::where('status', $status)->orderBy('created_at', 'desc')->get();
         }
+
+        // $searchTerm = $request->input('search');
+        // $data = DB::table('tb_lelang')
+        //        ->where('nama_barang', 'LIKE', '%'.$searchTerm.'%')
+        //        ->orderBy('id_lelang', 'asc')
+        //        ->paginate(10);
 
         $list = ListCrud::all();
         return view('auction', ['listLelang' => $listLelang, 'status' => $status], compact('listLelang'));
@@ -195,4 +193,14 @@ class LelangController extends Controller
 
         return redirect()->route('dashboard')->with('success', 'Item deleted successfully');
     }
+
+    // public function search(Request $request)
+    // {
+    //     $query = $request->input('query');
+    //     $items = Lelang::where('nama_barang', 'LIKE', '%' . $query . '%')
+    //                 // ->orWhere('description', 'LIKE', '%' . $query . '%')
+    //                 ->get();
+        
+    //     return view('auction', ['items' => $items, 'query' => $query]);
+    // }
 }

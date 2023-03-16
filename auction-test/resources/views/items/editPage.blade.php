@@ -57,8 +57,8 @@
                         </select>
                         <span style="color : red">@error('status'){{ $message }}@enderror</span>
                     
-                        <label for="date">Date:</label>
-                        <input type="date" id="date" name="date" value="{{ $Info->tanggal }}">
+                        {{-- <label for="date">Date:</label> --}}
+                        <input type="hidden" id="date" name="date" value="{{ $Info->tanggal }}" readonly>
                         <span style="color : red">@error('date'){{ $message }}@enderror</span>
 
                         {{-- <label for="lots">Image:</label>
