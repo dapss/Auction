@@ -20,7 +20,7 @@ class HistoryController extends Controller
         $searchTerm = $request->input('search');
         $data = DB::table('tb_history_lelang')
                ->where('nama_barang', 'LIKE', '%'.$searchTerm.'%')
-               ->orWhere('penawaran_harga', 'LIKE', '%'.$searchTerm.'%')
+               ->orWhere('penawaran_harga', '=', $searchTerm)
                ->orWhere('user_name', 'LIKE', '%'.$searchTerm.'%')
                ->orWhere('auctioneer', 'LIKE', '%'.$searchTerm.'%')
                ->orWhere('tanggal_lelang', 'LIKE', '%'.$searchTerm.'%')
@@ -28,7 +28,12 @@ class HistoryController extends Controller
                ->paginate(7);
         $list = History::orderBy('id_history', 'desc')->paginate(7);
 
-        return view('auction.history', ['list' => $data], compact('list'));
+        // return view('auction.history', ['list' => $data], compact('list'));
+        if($data->isEmpty()) {
+            return view('auction.history', ['list' => $data], compact('list'))->with('error', 'No results found for "'.$searchTerm.'"');
+        } else {
+            return view('auction.history', ['list' => $data], compact('list'))->with('data', $data)->with('searchTerm', $searchTerm);
+        }
     }
 
     /**

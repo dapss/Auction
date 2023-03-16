@@ -33,7 +33,7 @@
                       <div class="title">
                         {{-- <button type="submit">GENERATE PDF</button> --}}
                         <div class="history-action">
-                            <button class="btn">Generate PDF</button>
+                            <button class="btn">Export PDF</button>
                         </div>
                         </div> 
                       <div class="actions">
