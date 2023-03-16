@@ -38,7 +38,7 @@ class HistoryController extends Controller
     public function create()
     {
         //
-        return view('auction.close');
+        return view('auction.history');
     }
 
     /**

@@ -15,12 +15,27 @@ class LelangController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         //
-        $listLelang = Lelang::all();
+        // $listLelang = Lelang::all();
+        // $listLelang = Lelang::where('status', 'open')->orderBy('created_at', 'desc')->get();
+        // $listLelang = Lelang::orderByRaw("CASE WHEN status = 'open' THEN 1 WHEN status = 'closed' THEN 2 ELSE 3 END")->orderBy('created_at', 'desc')->get();
+
+        // $status = $request->input('status', 'open');
+        // $listLelang = Lelang::where('status', $status)->orderBy('created_at', 'desc')->get();
+
+        $status = $request->input('status', 'all');
+        if ($status == 'all') {
+            $listLelang = Lelang::orderByRaw("CASE WHEN status = 'open' THEN 1 WHEN status = 'closed' THEN 2 ELSE 3 END")
+                            ->orderBy('created_at', 'desc')
+                            ->get();
+        } else {
+            $listLelang = Lelang::where('status', $status)->orderBy('created_at', 'desc')->get();
+        }
+
         $list = ListCrud::all();
-        return view('auction', compact('listLelang'));
+        return view('auction', ['listLelang' => $listLelang, 'status' => $status], compact('listLelang'));
     }
 
     // public function index3()

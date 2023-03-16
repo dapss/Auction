@@ -10,10 +10,18 @@ use Illuminate\Support\Facades\DB;
 class CRUD extends Controller
 {
     //
-    function index() {
+    function index(Request $request)
+    {
+        $status = $request->input('status', 'all');
+        if ($status == 'all') {
+            $list = listCrud::orderByRaw("CASE WHEN status = 'open' THEN 1 WHEN status = 'closed' THEN 2 ELSE 3 END")
+                            ->orderBy('created_at', 'desc')
+                            ->get();
+        } else {
+            $list = listCrud::where('status', $status)->orderBy('created_at', 'desc')->get();
+        }
 
-        $list = ListCrud::all();
-        return view('dashboard', compact('list'));
+        return view('dashboard', ['list' => $list, 'status' => $status], compact('list'));
     }
 
     public function create()

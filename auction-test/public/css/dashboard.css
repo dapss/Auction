@@ -1,3 +1,21 @@
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #f2f2f2;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #888;
+  border-radius: 2px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #555;
+}
+
+
 .card {
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -6,6 +24,8 @@
   height: 400px;
   overflow: hidden;
   margin-right: 2%;
+  /* font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; */
+  
 }
 
 .card img {
@@ -72,6 +92,7 @@
 .card-status {
   padding: 20px;
   font-weight: bold;
+  letter-spacing: 2px;
 }
 
 .card-status.OPEN h3 {
@@ -112,8 +133,11 @@
 
 .action-content a {
   background: linear-gradient(90deg, #00d2ff 0%, #3a47d5 100%);
+  /* background: #333; */
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  letter-spacing: 2px;
+  font-weight: bold;
 }
 
 
@@ -199,7 +223,8 @@ table tbody td:before {
   display: inline-block;
   padding: 15px 25px;
   border-radius: 40px;
-  background: linear-gradient(90deg, #00d2ff 0%, #3a47d5 100%);
+  /* background: linear-gradient(90deg, #00d2ff 0%, #3a47d5 100%); */
+  background-color: #333;
   color: #fff;
   font-size: 10px;
   font-weight: bold;
@@ -221,4 +246,178 @@ table tbody td:before {
 .btn:active {
   transform: translateY(0px);
   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+
+/* Style the dropdown button */
+.dropbtn {
+  background-color: #fff;
+  color: #333;
+  padding: 10px;
+  font-size: 16px;
+  border: 2px solid #333;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+/* Style the dropdown content */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #fff;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  min-width: 160px;
+  z-index: 1;
+}
+
+/* Show the dropdown content when the user hovers over the dropdown button */
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/* Style the links inside the dropdown */
+.dropdown-content a {
+  color: #333;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  transition: all 0.3s ease-in-out;
+}
+
+/* Add a background color to the dropdown links on hover */
+.dropdown-content a:hover {
+  background-color: #f1f1f1;
+}
+
+
+.action-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 24px;
+  background-color: #ddd;
+  /* font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; */
+  /* font-family: Nunito,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,"Apple Color Emoji","Segoe UI Emoji",Segoe UI Symbol,"Noto Color Emoji"; */
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  /* border-radius: 5px; */
+}
+
+.title {
+  font-size: 18px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #333;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+}
+
+.form {
+  margin-top: 100px;
+  align-items: center;
+}
+
+.actions select {
+  margin-right: 20px;
+  position: relative;
+  border-radius: 5px;
+  align-items: center;
+  background-color: #333;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  /* background: linear-gradient(90deg, #00d2ff 0%, #3a47d5 100%); */
+  color: white;
+}
+
+.actions option {
+  color: white;
+  letter-spacing: 2px;
+}
+
+.actions a {
+  background-color: #333;
+  color: #fff;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  margin-right: 1%;
+  
+}
+
+.dropdown {
+  position: relative;
+  margin-right: 12px;
+}
+
+.dropdown-toggle {
+  background-color: #333;
+  color: #fff;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #fff;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  min-width: 160px;
+  z-index: 1;
+}
+
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
+
+.dropdown-menu a {
+  color: #333;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  transition: all 0.3s ease-in-out;
+}
+
+.dropdown-menu a:hover {
+  background-color: #f1f1f1;
+}
+
+.search {
+  display: flex;
+  align-items: center;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+input[type="text"] {
+  padding: 8px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.search button {
+  background-color: #333;
+  /* background-image: linear-gradient(90deg, #00d2ff 0%, #3a47d5 100%); */
+  color: #fff;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  letter-spacing: 2px;
 }

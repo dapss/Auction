@@ -49,11 +49,11 @@
                         <span style="color : red">@error('item-id'){{ $message }}@enderror</span>
 
                         <label for="name">Full Name:</label>
-                        <input type="text" id="name" name="name" value="" placeholder="Enter your name">
+                        <input type="text" id="name" name="name" value="{{ auth()->user()->name }}" placeholder="Enter your name">
                         <span style="color : red">@error('name'){{ $message }}@enderror</span>
 
                         <label for="date">Date:</label>
-                        <input type="date" id="date" name="date" value="{{ $Info->tanggal_lelang }}">
+                        <input type="date" id="date" name="date" value="{{ date('Y-m-d') }}" readonly>
                         <span style="color : red">@error('date'){{ $message }}@enderror</span>
 
                         {{-- <label for="status">Status:</label> --}}

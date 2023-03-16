@@ -49,12 +49,12 @@
                         <input type="text" id="item-name" name="item-name" value="{{ $Info->nama_barang }}" readonly>
                         <span style="color : red">@error('item-id'){{ $message }}@enderror</span>
 
-                        <label for="name">Full Name:</label>
-                        <input type="text" id="name" name="name" value="">
+                        {{-- <label for="name">Full Name:</label> --}}
+                        <input type="hidden" id="name" name="name" value="{{ auth()->user()->name }}">
                         <span style="color : red">@error('name'){{ $message }}@enderror</span>
 
                         <label for="date">Date:</label>
-                        <input type="date" id="date" name="date" value="{{ old('date') }}">
+                        <input type="date" id="date" name="date" value="{{ date('Y-m-d') }}" readonly>
                         <span style="color : red">@error('date'){{ $message }}@enderror</span>
 
                         {{-- <label for="status">Status:</label> --}}
@@ -67,11 +67,12 @@
                         <span style="color : red">@error('status'){{ $message }}@enderror</span>
 
                         <label for="bid">Starting Price:</label>
-                        <input type="text" id="bid" name="bid" value="">
+                        <input type="hidden" id="bid" name="bid" value="{{ $Info->harga_awal }}" readonly>
+                        <input type="text" value="@money($Info->harga_awal)" readonly>
                         <span style="color : red">@error('bid'){{ $message }}@enderror</span>
 
                         <label for="auctioneer">Auctioneer:</label>
-                        <input type="text" id="auctioneer" name="auctioneer" value="">
+                        <input type="text" id="auctioneer" name="auctioneer" value="" placeholder="Please insert auctioneer">
                         <span style="color : red">@error('auctioneer'){{ $message }}@enderror</span>
 
                         <input type="hidden" id="lots" name="lots" value="{{ $Info->lots }}">
@@ -84,7 +85,7 @@
                         {{-- <label for="password">Password:</label>
                         <input type="password" id="password" name="password"> --}}
                     
-                        <input type="submit" value="Submit">
+                        <input type="submit" value="START AUCTION">
                         @endforeach
 
                     </form>

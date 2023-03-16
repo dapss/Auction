@@ -61,6 +61,12 @@
     display: flex;
     /* align-items: center; */
   }
+
+  .action h5 {
+    background: linear-gradient(90deg, #00d2ff 0%, #3a47d5 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
   
   .action-content {
     margin-right: 2%;
@@ -72,7 +78,7 @@
     align-items: center;
     height: 1px;
   }
-
+  
   /* .card-status.OPEN h3 {
     font-size: 15px;
     margin-top: auto;

@@ -64,7 +64,7 @@ Route::get('/test', function () {
 
 //Route History
 Route::get('/history', [HistoryController::class, 'index'])->name('history');
-Route::get('/close', [HistoryController::class, 'create']);
+Route::get('close', [HistoryController::class, 'create']);
 Route::get('/close/{id}', [HistoryController::class, 'index2']);
 Route::get('/pdf', [HistoryController::class, 'pdf']);
 Route::post('close', [HistoryController::class, 'store']);

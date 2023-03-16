@@ -6,7 +6,20 @@
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             <div class="action">
                 <div class="action-content">
-                  <a href="{{ url('/add') }}" style="color: #007bff">Start Auction</a>
+                  @if (auth()->check())
+                    @can('view-admin-dashboard')
+                      <a href="{{ url('/add') }}" style="color: #007bff">Start Auction</a>
+                    @endcan
+
+                    @can('view-petugas-dashboard')
+                      <a href="{{ url('/add') }}" style="color: #007bff">Start Auction</a>
+                    @endcan
+
+                    @can('view-user-dashboard')
+                      <a>Welcome to Aucify</a>
+                    @endcan
+                  @endif
+                  
                 </div>
             </div>
         </h2>
@@ -15,14 +28,26 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900" style="font-weight: bold">
+                {{-- <div class="p-6 text-gray-900" style="font-weight: bold">
                     {{ __("Welcome to Aucify!") }}
-                </div>
-                {{-- <div class="action">
-                  <div class="action-content">
-                    <a href="">Add</a>
-                  </div>
                 </div> --}}
+                <form action="{{ route('dashboard') }}" method="GET">
+                  <div class="action-row">
+                    <div class="title">Items</div>
+                    <div class="actions">
+                      <select name="status" id="status" onchange="this.form.submit()">
+                        <option value="all" {{ $status == 'all' ? 'selected' : '' }}>All</option>
+                        <option value="open" {{ $status == 'open' ? 'selected' : '' }}>Open</option>
+                        <option value="closed" {{ $status == 'closed' ? 'selected' : '' }}>Closed</option>
+                      </select>
+                      <div class="search">
+                        <input type="text" placeholder="Search...">
+                        <button>Search</button>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+
                 <div class="card-row">
                   @foreach ($list as $item)
                   {{-- {{ dd($item) }} --}}

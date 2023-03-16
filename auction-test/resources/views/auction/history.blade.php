@@ -45,7 +45,7 @@
                                 <td >@money($item->penawaran_harga)</td>
                                 <td >{{ $item->user_name }}</td>
                                 <td >{{ $item->auctioneer }}</td>
-                                <td >{{ $item->tanggal_lelang }}</td>
+                                <td >{{ \Carbon\Carbon::parse($item->tanggal_lelang)->format('d-m-Y') }}</td>
                                 {{-- <td ><i class="far fa-file-pdf"></i></td> --}}
                             </tr>
                             {{-- <tr>

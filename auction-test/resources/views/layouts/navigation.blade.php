@@ -16,23 +16,36 @@
                 </div>
 
                 <!-- Navigation Links -->
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('auction')" :active="request()->routeIs('auction')">
-                        {{ __('Auction') }}
-                    </x-nav-link>
-                </div>
+                @if (auth()->check())
+                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex" style="letter-spacing: 2px;">
+                        <x-nav-link :href="route('auction')" :active="request()->routeIs('auction')">
+                            {{ __('Auction') }}
+                        </x-nav-link>
+                    </div>
 
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                        {{ __('Items') }}
-                    </x-nav-link>
-                </div>
+                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex" style="letter-spacing: 2px;">
+                        <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                            {{ __('Items') }}
+                        </x-nav-link>
+                    </div>
 
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('history')" :active="request()->routeIs('history')">
-                        {{ __('History') }}
-                    </x-nav-link>
-                </div>
+                    @can('view-admin-dashboard')
+                        <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex" style="letter-spacing: 2px;">
+                            <x-nav-link :href="route('history')" :active="request()->routeIs('history')">
+                                {{ __('History') }}
+                            </x-nav-link>
+                        </div>
+                    @endcan 
+
+                    @can('view-petugas-dashboard')
+                        <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex" style="letter-spacing: 2px;">
+                            <x-nav-link :href="route('history')" :active="request()->routeIs('history')">
+                                {{ __('History') }}
+                            </x-nav-link>
+                        </div>
+                    @endcan 
+                @endif
+                
             </div>
 
             <!-- Settings Dropdown -->
@@ -40,7 +53,7 @@
                 <x-dropdown align="right" width="48">
                     <x-slot name="trigger">
                         <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
-                            <div>{{ Auth::user()->name }}</div>
+                            <div style="letter-spacing: 2px;">{{ Auth::user()->name }}</div>
 
                             <div class="ml-1">
                                 <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
