@@ -6,6 +6,8 @@ use App\Models\Lelang;
 use App\Models\History;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use PDF;
+use Dompdf\Dompdf;
 
 class HistoryController extends Controller
 {
@@ -135,8 +137,15 @@ class HistoryController extends Controller
         //
     }
 
-    public function pdf(Request $request)
+    public function exportPDF()
     {
-        return view('auction.pdf');
+        $list = History::all();
+        $pdf = new Dompdf();
+        $pdf->loadHtml(view('pdf.export', compact('list')));
+        $pdf->setPaper('A4', 'landscape');
+        $pdf->render();
+        return $pdf->stream('History.pdf');
+
+        // return view('pdf.export', compact('list'));
     }
 }

@@ -33,7 +33,7 @@
                       <div class="title">
                         {{-- <button type="submit">GENERATE PDF</button> --}}
                         <div class="history-action">
-                            <button class="btn">Export PDF</button>
+                            <a class="btn" href="{{ url('/export-pdf') }}">Export PDF</a>
                         </div>
                         </div> 
                       <div class="actions">

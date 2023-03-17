@@ -12,7 +12,7 @@
 
                 <div class="shrink-0 flex items-center">
                     <a href="{{ route('auction') }}">
-                      <img src="logo2.png" alt="My Logo" style="height: 80px">
+                      <img src="/logo2.png" style="height: 80px">
                     </a>
                   </div>
 

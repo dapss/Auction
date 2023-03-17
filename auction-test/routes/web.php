@@ -71,7 +71,9 @@ Route::get('/pdf', [HistoryController::class, 'pdf']);
 Route::post('close', [HistoryController::class, 'store']);
 
 
-// Route::resource('/dashboard', DashboardController::class);
+//route pdf
+Route::get('/export-pdf', [HistoryController::class, 'exportPDF']);
+
 
 
 require __DIR__.'/auth.php';
