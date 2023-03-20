@@ -63,7 +63,6 @@ Route::get('/test', function () {
 
 //Route History
 Route::get('/history', [HistoryController::class, 'index'])->middleware(['auth', 'can:view-petugas-dashboard,view-admin-dashboard', 'verified'])->name('history');
-Route::get('/history', [HistoryController::class, 'index'])->middleware(['auth', 'can:view-admin-dashboard', 'verified'])->name('history');
 Route::get('close', [HistoryController::class, 'create']);
 Route::get('/close/{id}', [HistoryController::class, 'index2'])->middleware(['auth', 'can:view-petugas-dashboard', 'verified']);
 // Route::get('/pdf', [HistoryController::class, 'pdf'])->middleware(['auth', 'can:view-petugas-dashboard,view-admin-dashboard']);

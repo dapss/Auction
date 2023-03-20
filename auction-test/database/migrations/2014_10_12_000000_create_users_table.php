@@ -22,6 +22,7 @@ return new class extends Migration
             $table->enum('role', ['Admin', 'Masyarakat', 'Petugas'])->default('Masyarakat');
             $table->rememberToken();
             $table->timestamps();
+            // $table->increments();
         });
     }
 

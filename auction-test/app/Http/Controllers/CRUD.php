@@ -79,12 +79,6 @@ class CRUD extends Controller
 
     public function destroy($id)
     {
-        // $item = ListCrud::findOrFail($id);
-        // $item->delete();
-
-        // $item = Lelang::findOrFail($id);
-        // $item->delete();
-
         $delete = DB::table('tb_barang')
         ->where('id_barang', $id)
         ->delete();
@@ -119,23 +113,6 @@ class CRUD extends Controller
             'status'=>'required',
             // 'lots'=>'required',
         ]);
-
-        // $input = $request->all();
-
-        // if ($image = $request->file('lots')) {
-        //     $destinationPath = 'bids/';
-        //     $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
-        //     $image->move($destinationPath, $profileImage);
-        //     $input['lots'] = "$profileImage";
-        //     if ($barang->lots) {
-        //         unlink('bids/' . $barang->lots); // menghapus file gambar lama
-        //     }
-        // } else {
-        //     unset($input['lots']);
-        //     if ($barang->lots) {
-        //         unlink('bids/' . $barang->lots); // menghapus file gambar lama
-        //     }
-        // }
 
         $updating = DB::table('tb_barang')
                         ->where('id_barang', $request->input('id'))

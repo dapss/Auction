@@ -26,14 +26,6 @@
                         </div>
                         </div> 
                       <div class="actions">
-                            {{-- <input type="text" name="search" value="{{ old('search') }}" placeholder="Search...">
-                            <button type="submit">Search</button> --}}
-                            {{-- <div class="generate">
-                                <button type="submit">GENERATE PDF</button>
-                            </div>
-                            <div class="reset">
-                                <button type="submit">RESET</button>
-                            </div> --}}
                             <div class="search">
                                 <input type="text" name="search" placeholder="Search..." value="{{ old('search') }}">
                                 <button type="submit">Search</button>

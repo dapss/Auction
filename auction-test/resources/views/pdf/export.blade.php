@@ -15,12 +15,14 @@ table {
   overflow: hidden;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
 }
+
 table th, table td {
   padding: 15px;
   border-bottom: 1px solid #ddd;
   vertical-align: middle;
   text-align: left;
 }
+
 table th {
   background-color: #f2f2f2;
   color: #555;
@@ -30,12 +32,15 @@ table th {
   text-align: left;
   /* text-align: center; */
 }
+
 table tbody tr:nth-child(even) {
   background-color: #f9f9f9;
 }
+
 table tbody tr:hover {
   background-color: #f5f5f5;
 }
+
 table tbody td:before {
   /* content: attr(data-label); */
   display: inline-block;

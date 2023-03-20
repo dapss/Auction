@@ -15,9 +15,6 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                {{-- <div class="p-6 text-gray-900">
-                    {{ __("Start an Auction") }}
-                </div> --}}
                     <form action="addCRUD" method="post" enctype="multipart/form-data">
                         @if(Session::get('success'))
                             <div class="alert alert-success">
@@ -32,9 +29,6 @@
                         @endif
 
                         @csrf
-                        {{-- <label for="id">ID :</label>
-                        <input type="text" id="id" name="id" value="{{ old('id') }}">
-                        <span style="color : red">@error('id'){{ $message }}@enderror</span> --}}
                         
                         <label for="nama_barang">Name:</label>
                         <input type="text" id="nama_barang" name="nama_barang" value="{{ old('nama_barang') }}">

@@ -26,30 +26,14 @@ class LelangController extends Controller
             $listLelang = Lelang::where('status', $status)->orderBy('created_at', 'desc')->get();
         }
 
-        // $searchTerm = $request->input('search');
-        // $data = DB::table('tb_lelang')
-        //        ->where('nama_barang', 'LIKE', '%'.$searchTerm.'%')
-        //        ->orderBy('id_lelang', 'asc')
-        //        ->paginate(10);
-
         $list = ListCrud::all();
         return view('auction', ['listLelang' => $listLelang, 'status' => $status], compact('listLelang'));
     }
-
-    // public function index3()
-    // {
-    //     $list = ListCrud::all();
-    //     return view('auction', compact('list'));
-    // }
 
     public function index2($id) {
         $listLelang = ListCrud::where('id_barang', $id)->get();
         return view('auction.start', compact('listLelang'));
     }
-
-    // public function user() {
-    //     $user = auth()->user();
-    // }
 
     /**
      * Show the form for creating a new resource.
@@ -188,13 +172,4 @@ class LelangController extends Controller
         return redirect()->route('dashboard')->with('success', 'Item deleted successfully');
     }
 
-    // public function search(Request $request)
-    // {
-    //     $query = $request->input('query');
-    //     $items = Lelang::where('nama_barang', 'LIKE', '%' . $query . '%')
-    //                 // ->orWhere('description', 'LIKE', '%' . $query . '%')
-    //                 ->get();
-        
-    //     return view('auction', ['items' => $items, 'query' => $query]);
-    // }
 }
