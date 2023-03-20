@@ -17,17 +17,6 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                {{-- <div class="history-action">
-                    <div class="text-left p-6 text-gray-900" style="font-weight: bold">
-                        {{ __("History") }}
-                    </div>
-                    <button class="btn">Generate PDF</button>
-                    <form action="{{ route('history') }}" method="GET">
-                        <input type="text" name="search" value="{{ old('search') }}" placeholder="Search...">
-                        <button type="submit">Search</button>
-                    </form>
-                </div> --}}
-
                 <form action="{{ route('history') }}" method="GET">
                     <div class="action-row">
                       <div class="title">

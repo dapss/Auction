@@ -83,11 +83,17 @@ class HistoryController extends Controller
             'auctioneer'=>$request->input('auctioneer'),
         ]);
 
-        // if($query) {
-        //     return back()->with('success', 'Data have been successfuly inserted');
-        // } else {
-        //     return back()->with('fail', 'Something went wrong');
-        // }
+        DB::table('tb_barang')
+        ->where('nama_barang', $request->input('item-name'))
+        ->update([
+            'status' => 'CLOSED'
+        ]);
+
+        DB::table('tb_lelang')
+        ->where('nama_barang', $request->input('item-name'))
+        ->update([
+            'status' => 'CLOSED'
+        ]);
 
         return redirect('history');
     }

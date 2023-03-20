@@ -83,12 +83,6 @@ class LelangController extends Controller
             'lots'=>$request->input('lots'),
         ]);
 
-        // if($query) {
-        //     return back()->with('success', 'Data have been successfuly inserted');
-        // } else {
-        //     return back()->with('fail', 'Something went wrong');
-        // }
-
         return redirect('auction');
     }
 

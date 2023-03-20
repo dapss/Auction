@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="{{ asset('css/dashboard.css') }}">
+{{-- <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}"> --}}
 
 <style>
 table {
@@ -47,7 +47,7 @@ table tbody td:before {
 </style>
 
 <div>
-    <h1 style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif">PDF Document</h1>
+    <h1 style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; text-align: center; margin-bottom: 50px">AUCTION HISTORY</h1>
     <table>
         <thead>
             <tr>

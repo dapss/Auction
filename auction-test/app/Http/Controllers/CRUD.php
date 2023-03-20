@@ -26,6 +26,9 @@ class CRUD extends Controller
 
     public function create()
     {
+        if (auth()->user()->role !== 'Petugas') {
+            abort(403, 'Unauthorized');
+        }
         return view('items.add');
     }
 

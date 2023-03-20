@@ -35,6 +35,11 @@
                         @csrf
 
                         @foreach ($listHistory as $item)
+
+                        {{-- <label for="item-name">Item Name:</label>
+                        <input type="text" id="item-name" name="item-name" value="{{ $item->id_barang }}" readonly>
+                        <span style="color : red">@error('item-id'){{ $message }}@enderror</span> --}}
+
                         <label for="item-name">Item Name:</label>
                         <input type="text" id="item-name" name="item-name" value="{{ $item->nama_barang }}" readonly>
                         <span style="color : red">@error('item-id'){{ $message }}@enderror</span>
