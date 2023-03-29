@@ -19,5 +19,9 @@ class Lelang extends Model
         return $this->belongsTo(ListCrud::class);
     }
 
-}
+    public function barang()
+    {
+        return $this->belongsTo(ListCrud::class, 'id_barang');
+    }
 
+}

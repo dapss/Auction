@@ -1,0 +1,22 @@
+header {
+	padding-top: 13rem;
+	padding-bottom: 9rem;
+	background: linear-gradient(to bottom right, rgba(28, 54, 51, 0.7), rgba(28, 54, 51, 0.7)), url('../images/header-background.jpg') center center no-repeat;
+	background-size: cover;
+	text-align: center;
+}
+
+header .h1-large {
+	margin-bottom: 2.5rem;
+	color: #ffffff;
+}
+
+header .btn-outline-lg {
+	border: 2px solid #ffffff;
+	color: #ffffff;
+}
+
+header .btn-outline-lg:hover {
+	background-color: #ffffff;
+	color: #252936;
+}

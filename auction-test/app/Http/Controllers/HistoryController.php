@@ -21,22 +21,48 @@ class HistoryController extends Controller
         //
         $searchTerm = $request->input('search');
         $data = DB::table('tb_history_lelang')
-               ->where('nama_barang', 'LIKE', '%'.$searchTerm.'%')
-               ->orWhere('penawaran_harga', '=', $searchTerm)
-               ->orWhere('user_name', 'LIKE', '%'.$searchTerm.'%')
-               ->orWhere('auctioneer', 'LIKE', '%'.$searchTerm.'%')
-               ->orWhere('tanggal_lelang', 'LIKE', '%'.$searchTerm.'%')
-            //    ->orderBy('id_history', 'asc')
-               ->paginate(7);
-        $list = History::orderBy('id_history', 'desc')->paginate(7);
+            ->orWhere('penawaran_harga', '=', $searchTerm)
+            ->orWhere('id_history', '=', $searchTerm)
+            ->orWhere('user_name', 'LIKE', '%' . $searchTerm . '%')
+            ->orWhere('nama_barang', 'LIKE', '%' . $searchTerm . '%')
+            ->orWhere('auctioneer', 'LIKE', '%' . $searchTerm . '%')
+            ->orWhere('tanggal_lelang', '=', $searchTerm)
+            ->paginate(5);
+        $data->appends(array('search' => $searchTerm));
+        $list = History::orderBy('id_history', 'desc')->paginate(5);
 
-        // return view('auction.history', ['list' => $data], compact('list'));
-        if($data->isEmpty()) {
-            return view('auction.history', ['list' => $data], compact('list'))->with('error', 'No results found for "'.$searchTerm.'"');
+        if ($data->isEmpty()) {
+            return view('auction.history', ['list' => $data], compact('list'))->with('error', 'No results found for "' . $searchTerm . '"');
         } else {
             return view('auction.history', ['list' => $data], compact('list'))->with('data', $data)->with('searchTerm', $searchTerm);
         }
     }
+
+    // public function index(Request $request)
+    // {
+    //     $searchTerm = $request->input('search');
+
+    //     $data = History::with([
+    //         'barang' => function ($query) use ($searchTerm) {
+    //             // $query->where('nama_barang', 'LIKE', '%' . $searchTerm . '%');
+    //         }
+    //     ])
+    //         ->orWhere('penawaran_harga', '=', $searchTerm)
+    //         ->orWhere('id_history', '=', $searchTerm)
+    //         ->orWhere('user_name', 'LIKE', '%' . $searchTerm . '%')
+    //         ->orWhere('auctioneer', 'LIKE', '%' . $searchTerm . '%')
+    //         ->orWhere('tanggal_lelang', 'LIKE', $searchTerm)
+    //         ->paginate(5);
+
+    //     $list = History::orderBy('id_history', 'desc')->paginate(5);
+
+    //     if ($data->isEmpty()) {
+    //         return view('auction.history', ['list' => $data], compact('list'))->with('error', 'No results found for "' . $searchTerm . '"');
+    //     } else {
+    //         return view('auction.history', ['list' => $data], compact('list'))->with('data', $data)->with('searchTerm', $searchTerm);
+    //     }
+    // }
+
 
     /**
      * Show the form for creating a new resource.
@@ -46,8 +72,11 @@ class HistoryController extends Controller
 
 
 
-     public function index2($id) {
-        $listHistory = Lelang::where('id_barang', $id)->get();
+    public function index2($id)
+    {
+        $listHistory = Lelang::where('id_barang', $id)
+            ->with('barang')
+            ->get();
         return view('auction.close', compact('listHistory'));
     }
 
@@ -68,32 +97,34 @@ class HistoryController extends Controller
     {
         //
         $request->validate([
-            'item-name'=>'required',
-            'bidder'=>'required',
-            'date'=>'required',
-            'bid'=>'required',
-            'auctioneer'=>'required',
+            'item-id' => 'required',
+            'item-name' => 'required',
+            'bidder' => 'required',
+            'date' => 'required',
+            'bid' => 'required',
+            'auctioneer' => 'required',
         ]);
 
         $query = DB::table('tb_history_lelang')->insert([
-            'nama_barang'=>$request->input('item-name'),
-            'user_name'=>$request->input('bidder'),
-            'tanggal_lelang'=>$request->input('date'),
-            'penawaran_harga'=>$request->input('bid'),
-            'auctioneer'=>$request->input('auctioneer'),
+            'id_barang' => $request->input('item-id'),
+            'nama_barang' => $request->input('item-name'),
+            'user_name' => $request->input('bidder'),
+            'tanggal_lelang' => $request->input('date'),
+            'penawaran_harga' => $request->input('bid'),
+            'auctioneer' => $request->input('auctioneer'),
         ]);
 
         DB::table('tb_barang')
-        ->where('nama_barang', $request->input('item-name'))
-        ->update([
-            'status' => 'CLOSED'
-        ]);
+            ->where('id_barang', $request->input('item-id'))
+            ->update([
+                'status' => 'CLOSED'
+            ]);
 
         DB::table('tb_lelang')
-        ->where('nama_barang', $request->input('item-name'))
-        ->update([
-            'status' => 'CLOSED'
-        ]);
+            ->where('id_barang', $request->input('item-id'))
+            ->update([
+                'status' => 'CLOSED'
+            ]);
 
         return redirect('history');
     }
@@ -145,12 +176,12 @@ class HistoryController extends Controller
 
     public function exportPDF()
     {
-        $list = History::all();
+        $list = History::with('barang')->get();
         $pdf = new Dompdf();
         $pdf->loadHtml(view('pdf.export', compact('list')));
         $pdf->setPaper('A4', 'landscape');
         $pdf->render();
-        return $pdf->stream('History.pdf');
+        return $pdf->stream('Auction History.pdf');
 
         // return view('pdf.export', compact('list'));
     }

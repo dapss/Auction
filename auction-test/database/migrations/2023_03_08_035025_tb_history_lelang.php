@@ -15,6 +15,9 @@ return new class extends Migration
     {
         Schema::create('tb_history_lelang', function (Blueprint $table) {
             $table->increments('id_history');
+            // $table->integer('id_barang', 10)->unsigned();
+            $table->unsignedInteger('id_barang');
+            $table->foreign('id_barang')->references('id_barang')->on('tb_barang')->onDelete('cascade');
             $table->string('nama_barang');
             $table->integer('penawaran_harga');
             $table->string('user_name');

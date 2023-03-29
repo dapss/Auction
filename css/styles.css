@@ -1,0 +1,438 @@
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+body,
+html {
+    width: 100%;
+	height: 100%;
+	overflow: hidden;
+}
+
+body, p {
+	color: #667077; 
+	font: 400 1rem/1.625rem "Poppins", sans-serif;
+}
+
+h1 {
+	color: #252936;
+	font-weight: 500;
+	font-size: 3.25rem;
+	line-height: 4rem;
+}
+
+h2 {
+	color: #252936;
+	font-weight: 500;
+	font-size: 2.5rem;
+	line-height: 3.25rem;
+}
+
+h3 {
+	color: #252936;
+	font-weight: 500;
+	font-size: 1.875rem;
+	line-height: 2.5rem;
+}
+
+h4 {
+	color: #252936;
+	font-weight: 500;
+	font-size: 1.5rem;
+	line-height: 2rem;
+}
+
+h5 {
+	color: #252936;
+	font-weight: 500;
+	font-size: 1.25rem;
+	line-height: 1.625rem;
+}
+
+h6 {
+	color: #252936;
+	font-weight: 500;
+	font-size: 1rem;
+	line-height: 1.375rem;
+}
+
+.p-large {
+	font-size: 1.125rem;
+	line-height: 1.75rem;
+}
+
+.container {
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+.flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.grid {
+    display: grid;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+img {
+	max-width: 100%;
+	vertical-align: middle; /* solves a gap when inside image-container */
+}
+
+ul {
+    list-style-type: none;
+}
+
+.li-space-lg li {
+	margin-bottom: 0.5rem;
+}
+
+a {
+	color: #667077;
+	text-decoration: underline;
+}
+
+a:hover {
+	color: #667077;
+	text-decoration: underline;
+}
+
+.bg-gray {
+	background-color: #f9fbfe;
+}
+
+.btn-solid-reg {
+	display: inline-block;
+	padding: 1.5rem 2.375rem 1.5rem 2.375rem;
+	border: 2px solid #25563f;
+	border-radius: 32px;
+	background-color: #25563f;
+	color: #ffffff;
+	font-weight: 400;
+	font-size: 0.875rem;
+	line-height: 0;
+	text-decoration: none;
+	transition: all 0.2s;
+}
+
+.btn-solid-reg:hover {
+	background-color: transparent;
+	color: #25563f; /* needs to stay here because of the color property of a tag */
+	text-decoration: none;
+}
+
+.btn-solid-lg {
+	display: inline-block;
+	padding: 1.875rem 3rem 1.875rem 3rem;
+	border: 2px solid #25563f;
+	border-radius: 32px;
+	background-color: #25563f;
+	color: #ffffff;
+	font-weight: 400;
+	font-size: 0.875rem;
+	line-height: 0;
+	text-decoration: none;
+	transition: all 0.2s;
+}
+
+.btn-solid-lg:hover {
+	background-color: transparent;
+	color: #25563f; /* needs to stay here because of the color property of a tag */
+	text-decoration: none;
+}
+
+.btn-outline-reg {
+	display: inline-block;
+	padding: 1.5rem 2.375rem 1.5rem 2.375rem;
+	border: 2px solid #252936;
+	border-radius: 32px;
+	background-color: transparent;
+	color: #252936;
+	font-weight: 400;
+	font-size: 1rem;
+	line-height: 0;
+	text-decoration: none;
+	transition: all 0.2s;
+}
+
+.btn-outline-reg:hover {
+	background-color: #252936;
+	color: #ffffff;
+	text-decoration: none;
+}
+
+.btn-outline-lg {
+	display: inline-block;
+	padding: 1.875rem 3rem 1.875rem 3rem;
+	border: 2px solid #252936;
+	border-radius: 32px;
+	background-color: transparent;
+	color: #252936;
+	font-weight: 400;
+	font-size: 1rem;
+	line-height: 0;
+	text-decoration: none;
+	transition: all 0.2s;
+}
+
+.btn-outline-lg:hover {
+	background-color: #252936;
+	color: #ffffff;
+	text-decoration: none;
+}
+
+.btn-outline-sm {
+	display: inline-block;
+	padding: 1.25rem 1.625rem 1.25rem 1.625rem;
+	border: 2px solid #252936;
+	border-radius: 32px;
+	background-color: transparent;
+	color: #252936;
+	font-weight: 400;
+	font-size: 1rem;
+	line-height: 0;
+	text-decoration: none;
+	transition: all 0.2s;
+}
+
+.btn-outline-sm:hover {
+	background-color: #252936;
+	color: #ffffff;
+	text-decoration: none;
+}
+
+.form-group {
+	position: relative;
+	margin-bottom: 1.375rem;
+}
+
+.form-control-input,
+.form-control-textarea {
+	width: 100%;
+	padding-top: 1rem;
+	padding-bottom: 1rem;
+	padding-left: 1.5rem;
+	border: 2px solid #e6e7ec;
+	background-color: #ffffff;
+	color: #667077;
+	font-size: 1rem;
+	line-height: 1.5rem;
+	font-family: "Poppins";
+	-webkit-appearance: none; /* removes inner shadow on form inputs on ios safari */
+}
+
+::placeholder {
+	color: #667077;
+	opacity: 1; /* Firefox */
+}
+
+.form-control-textarea {
+	display: block;
+	height: 14rem; /* used instead of html rows to normalize height between Chrome and IE/FF */
+}
+
+.form-control-input:focus,
+.form-control-textarea:focus {
+	border: 2px solid #d7d8e1;
+	outline: none; /* Removes blue border on focus */
+}
+
+.form-control-input:hover,
+.form-control-textarea:hover {
+	border: 2px solid #d7d8e1;
+}
+
+.form-control-submit-button {
+	display: inline-block;
+	width: 100%;
+	height: 3.75rem;
+	border: 2px solid #25563f;
+	border-radius: 32px;
+	background-color: #25563f;
+	color: #ffffff;
+	font-weight: 400;
+	font-size: 1rem;
+	line-height: 0;
+	font-family: "Poppins";
+	cursor: pointer;
+	transition: all 0.2s;
+}
+
+.form-control-submit-button:hover {
+	border: 2px solid #25563f;
+	background-color: transparent;
+	color: #25563f;
+}
+
+
+/**********************/
+/*     Navigation     */
+/**********************/
+.navbar {
+	position: absolute;
+	top: 26px;
+	right: 0;
+	left: 0;
+    background-color: transparent;
+    color: #ffffff;
+}
+
+.navbar .flex {
+	flex-direction: column;
+}
+
+.navbar a {
+	text-decoration: none;
+}
+
+.navbar .logo-image {
+	width: 280px;
+	height: 30px;
+	margin-top: 0.5rem;
+	margin-bottom: 1.25rem;
+}
+
+.navbar .logo-text {
+	margin-bottom: 0.5rem;
+	color: #ffffff;
+	font-weight: 500;
+	font-size: 2rem;
+	line-height: 1.875rem;
+}
+
+.navbar ul {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	padding: 0.5rem 0.75rem 0 0.75rem;
+	background-color: rgba(0, 0, 0, 0.2);
+}
+
+.navbar ul li {
+	padding: 0 0.75rem 0.5rem 0.75rem;
+}
+
+.navbar ul a {
+    color: #ffffff;
+}
+
+.navbar ul a:hover {
+    border-bottom: 2px #ffffff solid;
+}
+
+
+/******************/
+/*     Header     */
+/******************/
+header {
+	padding-top: 13rem;
+	padding-bottom: 9rem;
+	background: linear-gradient(to bottom right, rgba(28, 54, 51, 0.7), rgba(28, 54, 51, 0.7)), url('../images/header-background.jpg') center center no-repeat;
+	background-size: cover;
+	text-align: center;
+}
+
+header .h1-large {
+	margin-bottom: 2.5rem;
+	color: #ffffff;
+}
+
+header .btn-outline-lg {
+	border: 2px solid #ffffff;
+	color: #ffffff;
+}
+
+header .btn-outline-lg:hover {
+	background-color: #ffffff;
+	color: #252936;
+}
+
+
+
+/*************************/
+/*     Media Queries     */
+/*************************/	
+/* Min-width 992px */
+@media (min-width: 992px) {
+	
+	/* General Styles */
+	.container {
+		max-width: 1140px;
+	}
+
+	.grid {
+		grid-template-columns: repeat(2, 1fr);
+	}
+	
+	.grid-3 {
+		grid-template-columns: repeat(3, 1fr);
+	}
+
+	.p-heading {
+		width: 36rem;
+		margin-right: auto;
+		margin-left: auto;
+	}
+	/* end of general styles */
+
+
+	/* Navigation */
+	.navbar {
+		top: 36px;
+	}
+
+	.navbar .flex {
+		flex-direction: row;
+		justify-content: space-between;
+	}
+
+	.navbar .logo-image {
+		margin: 0;
+	}
+
+	.navbar .logo-text {
+		margin-bottom: 0;
+	}
+
+	.navbar ul {
+		padding: 0;
+		background: none;
+	}
+
+	.navbar ul li {
+		margin-bottom: 0;
+		padding-bottom: 0;
+	}
+	
+	.navbar ul li:last-of-type a {
+		margin-right: 0;
+		padding-right: 0;
+	}
+	/* end of navigation */
+
+
+	/* Header */
+	header {
+		padding-top: 19.5rem;
+		padding-bottom: 18rem;
+	}
+
+	header .h1-large {
+		width: 50rem;
+		margin-right: auto;
+		margin-left: auto;
+		font-size: 4.75rem;
+		line-height: 5.75rem;
+	}
+	/* end of header */
+}
+/* end of min-width 992px */

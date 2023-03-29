@@ -15,22 +15,44 @@ class LelangController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    // public function index(Request $request)
+    // {
+    //     $status = $request->input('status', 'all');
+    //     if ($status == 'all') {
+    //         $listLelang = Lelang::orderByRaw("CASE WHEN status = 'open' THEN 1 WHEN status = 'closed' THEN 2 ELSE 3 END")
+    //             ->orderBy('created_at', 'desc')
+    //             ->get();
+    //     } else {
+    //         $listLelang = Lelang::where('status', $status)->orderBy('created_at', 'desc')->get();
+    //     }
+
+    //     $list = ListCrud::all();
+    //     return view('auction', ['listLelang' => $listLelang, 'status' => $status], compact('listLelang'));
+    // }
+
     public function index(Request $request)
     {
+        $searchTerm = $request->input('search');
         $status = $request->input('status', 'all');
         if ($status == 'all') {
             $listLelang = Lelang::orderByRaw("CASE WHEN status = 'open' THEN 1 WHEN status = 'closed' THEN 2 ELSE 3 END")
-                            ->orderBy('created_at', 'desc')
-                            ->get();
+                ->orderBy('created_at', 'desc')
+                ->with('barang')
+                ->get();
         } else {
-            $listLelang = Lelang::where('status', $status)->orderBy('created_at', 'desc')->get();
+            $listLelang = Lelang::where('status', $status)
+                ->orderBy('created_at', 'desc')
+                ->with('barang')
+                ->get();
         }
 
         $list = ListCrud::all();
-        return view('auction', ['listLelang' => $listLelang, 'status' => $status], compact('listLelang'));
+        return view('auction', compact('listLelang', 'status', 'list'));
     }
 
-    public function index2($id) {
+
+    public function index2($id)
+    {
         $listLelang = ListCrud::where('id_barang', $id)->get();
         return view('auction.start', compact('listLelang'));
     }
@@ -45,26 +67,26 @@ class LelangController extends Controller
         //
         $request->validate([
             // 'name'=>'required',
-            'item-id'=>'required',
-            'item-name'=>'required',
-            'date'=>'required',
-            'bid'=>'required',
-            'name'=>'required',
-            'auctioneer'=>'required',
-            'status'=>'required',
-            'lots'=>'required',
+            'item-id' => 'required',
+            'item-name' => 'required',
+            'date' => 'required',
+            'bid' => 'required',
+            'name' => 'required',
+            'auctioneer' => 'required',
+            'status' => 'required',
+            'lots' => 'required',
         ]);
 
         $query = DB::table('tb_lelang')->insert([
             // 'id_barang'=>$request->input('id'),
-            'id_barang'=>$request->input('item-id'),
-            'nama_barang'=>$request->input('item-name'),
-            'tanggal_lelang'=>$request->input('date'),
-            'harga_akhir'=>$request->input('bid'),
-            'user_name'=>$request->input('name'),
-            'auctioneer'=>$request->input('auctioneer'),
-            'status'=>$request->input('status'),
-            'lots'=>$request->input('lots'),
+            'id_barang' => $request->input('item-id'),
+            'nama_barang' => $request->input('item-name'),
+            'tanggal_lelang' => $request->input('date'),
+            'harga_akhir' => $request->input('bid'),
+            'user_name' => $request->input('name'),
+            'auctioneer' => $request->input('auctioneer'),
+            'status' => $request->input('status'),
+            'lots' => $request->input('lots'),
         ]);
 
         return redirect('auction');
@@ -87,9 +109,12 @@ class LelangController extends Controller
      * @param  \App\Models\Lelang  $lelang
      * @return \Illuminate\Http\Response
      */
-    public function show(Lelang $lelang)
+    public function show(Lelang $list, $id_lelang)
     {
         //
+        $list = Lelang::where('id_lelang', $id_lelang)->get();
+
+        return view('auction.detail', compact('list'));
     }
 
     /**
@@ -101,17 +126,15 @@ class LelangController extends Controller
 
     public function bid($id)
     {
-        //
-         // echo $id;
-         $row = DB::table('tb_lelang')
-         ->where('id_barang', $id)
-         ->first();
-         $data = [
-             'Info'=>$row,
-             'Title'=>'Bid'
-         ];
-         return view('auction.bid', $data);
+        $lelang = Lelang::with('barang')->find($id);
+
+        $data = [
+            'Info' => $lelang,
+            'Title' => 'Bid'
+        ];
+        return view('auction.bid', $data);
     }
+
 
     /**
      * Update the specified resource in storage.
@@ -126,34 +149,34 @@ class LelangController extends Controller
         $originalValue = DB::table('tb_lelang')->where('id_lelang', $request->input('id'))->value('harga_akhir');
 
         $request->validate([
-            'item-id'=>'required',
-            'item-name'=>'required',
-            'date'=>'required',
+            'item-id' => 'required',
+            'item-name' => 'required',
+            'date' => 'required',
             // 'bid'=>'required',
             'bid' => 'required|numeric|gt:' . $originalValue,
-            'name'=>'required',
-            'auctioneer'=>'required',
-            'status'=>'required',
+            'name' => 'required',
+            'auctioneer' => 'required',
+            'status' => 'required',
         ]);
 
         $updating = DB::table('tb_lelang')
-                        ->where('id_lelang', $request->input('id'))
-                        ->update([
-                            'id_barang'=>$request->input('item-id'),
-                            'nama_barang'=>$request->input('item-name'),
-                            'tanggal_lelang'=>$request->input('date'),
-                            // 'harga_akhir'=>$request->input('bid'),
-                            'harga_akhir' => $request['bid'],
-                            'user_name'=>$request->input('name'),
-                            'auctioneer'=>$request->input('auctioneer'),
-                            'status'=>$request->input('status'),
-                        ]);
+            ->where('id_lelang', $request->input('id'))
+            ->update([
+                'id_barang' => $request->input('item-id'),
+                'nama_barang' => $request->input('item-name'),
+                'tanggal_lelang' => $request->input('date'),
+                // 'harga_akhir'=>$request->input('bid'),
+                'harga_akhir' => $request['bid'],
+                'user_name' => $request->input('name'),
+                'auctioneer' => $request->input('auctioneer'),
+                'status' => $request->input('status'),
+            ]);
 
         $updatings = DB::table('tb_barang')
-                        ->where('id_barang', $request->input('id'))
-                        ->update([
-                            'status'=>$request->input('status'),
-                        ]);
+            ->where('id_barang', $request->input('id'))
+            ->update([
+                'status' => $request->input('status'),
+            ]);
         return redirect('auction');
     }
 

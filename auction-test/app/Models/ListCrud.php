@@ -11,4 +11,20 @@ class ListCrud extends Model
     protected $primaryKey = 'id_barang';
     protected $guarded = ['id_barang'];
     protected $table = 'tb_barang';
+
+
+    public function lelang()
+    {
+        return $this->hasMany(Lelang::class, 'id_barang');
+    }
+
+    public function history()
+    {
+        return $this->hasMany(History::class, 'id_barang');
+    }
+
+    public function bid()
+    {
+        return $this->hasMany(History::class, 'id_barang');
+    }
 }

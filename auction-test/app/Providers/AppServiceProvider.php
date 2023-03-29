@@ -30,7 +30,7 @@ class AppServiceProvider extends ServiceProvider
             return "<?php echo '$' . number_format($amount, 2); ?>";
         });
 
-        Blade::if('can', function ($ability) {
+        Blade::if ('can', function ($ability) {
             return Gate::check($ability);
         });
     }

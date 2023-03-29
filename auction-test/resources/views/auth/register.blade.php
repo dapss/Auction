@@ -1,5 +1,9 @@
 <x-guest-layout>
     <form method="POST" action="{{ route('register') }}">
+
+        <a href="/"><img src="{{ asset('logo2.png') }}" alt="Aucify Co."
+            style="height:15rem; margin-left: auto; margin-right: auto"></a>
+            
         @csrf
 
         <!-- Name -->

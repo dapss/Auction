@@ -6,7 +6,7 @@
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             <div class="action">
                 <div class="action-content">
-                  <a>Edit an Auction</a>
+                    <a>Edit an Auction</a>
                 </div>
             </div>
         </h2>
@@ -18,58 +18,90 @@
                 {{-- <div class="p-6 text-gray-900">
                     {{ __("Start an Auction") }}
                 </div> --}}
-                    <form action="{{ route('update') }}" method="post" enctype="multipart/form-data">
+                <form action="{{ route('update') }}" method="post" enctype="multipart/form-data">
 
-                        @if(Session::get('success'))
-                            <div class="alert alert-success">
-                                {{ Session::get('success') }}
-                            </div>
-                        @endif
+                    @if (Session::get('success'))
+                        <div class="alert alert-success">
+                            {{ Session::get('success') }}
+                        </div>
+                    @endif
 
-                        @if(Session::get('fail'))
-                            <div class="alert alert-danger">
-                                {{ Session::get('fail') }}
-                            </div>
-                        @endif
+                    @if (Session::get('fail'))
+                        <div class="alert alert-danger">
+                            {{ Session::get('fail') }}
+                        </div>
+                    @endif
 
-                        @csrf
-                        {{-- <label for="id">ID :</label> --}}
-                        <input type="hidden" id="id" name="id" value="{{ $Info->id_barang }}">
-                        <span style="color : red">@error('id'){{ $message }}@enderror</span>
-                        
-                        <label for="name">Name:</label>
-                        <input type="text" id="name" name="name" value="{{ $Info->nama_barang }}" readonly>
-                        <span style="color : red">@error('name'){{ $message }}@enderror</span>
+                    @csrf
+                    {{-- <label for="id">ID :</label> --}}
+                    <input type="hidden" id="id" name="id" value="{{ $Info->id_barang }}">
+                    <span style="color : red">
+                        @error('id')
+                            {{ $message }}
+                        @enderror
+                    </span>
 
-                        <label for="description">Description:</label>
-                        <input type="text" id="description" name="description" value="{{ $Info->deskripsi_barang }}">
-                        <span style="color : red">@error('description'){{ $message }}@enderror</span>
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" value="{{ $Info->nama_barang }}">
+                    <span style="color : red">
+                        @error('name')
+                            {{ $message }}
+                        @enderror
+                    </span>
 
-                        <label for="opening">Opening Price:</label>
-                        <input type="text" id="opening" name="opening" value="{{ $Info->harga_awal }}">
-                        <span style="color : red">@error('opening'){{ $message }}@enderror</span>
+                    <label for="description">Description:</label>
+                    <textarea id="description" name="description" rows="6">{{ $Info->deskripsi_barang }}</textarea>
+                    <span style="color : red">
+                        @error('description')
+                            {{ $message }}
+                        @enderror
+                    </span>
 
-                        <label for="status">Status:</label>
-                        <select name="status" id="status">
-                            <option disabled selected value="">Please select a status</option>
-                            <option value="OPEN" {{ $Info->status == "OPEN" ? 'selected' : '' }}>Open</option>
-                            <option value="CLOSED" {{ $Info->status == "CLOSED" ? 'selected' : '' }}>Closed</option>
-                        </select>
-                        <span style="color : red">@error('status'){{ $message }}@enderror</span>
-                    
-                        {{-- <label for="date">Date:</label> --}}
-                        <input type="hidden" id="date" name="date" value="{{ $Info->tanggal }}" readonly>
-                        <span style="color : red">@error('date'){{ $message }}@enderror</span>
+                    <label for="opening">Opening Price:</label>
+                    <input type="text" id="opening" name="opening" value="{{ $Info->harga_awal }}">
+                    <span style="color : red">
+                        @error('opening')
+                            {{ $message }}
+                        @enderror
+                    </span>
 
-                        {{-- <label for="lots">Image:</label>
+                    <label for="auctioneer">Auctioneer:</label>
+                    <input type="text" id="auctioneer" name="auctioneer" value="{{ $Info->auctioneer }}">
+                    <span style="color : red">
+                        @error('harga_awal')
+                            {{ $message }}
+                        @enderror
+                    </span>
+
+                    <label for="status">Status:</label>
+                    <select name="status" id="status">
+                        <option disabled selected value="">Please select a status</option>
+                        <option value="OPEN" {{ $Info->status == 'OPEN' ? 'selected' : '' }}>Open</option>
+                        <option value="CLOSED" {{ $Info->status == 'CLOSED' ? 'selected' : '' }}>Closed</option>
+                    </select>
+                    <span style="color : red">
+                        @error('status')
+                            {{ $message }}
+                        @enderror
+                    </span>
+
+                    {{-- <label for="date">Date:</label> --}}
+                    <input type="hidden" id="date" name="date" value="{{ $Info->tanggal }}" readonly>
+                    <span style="color : red">
+                        @error('date')
+                            {{ $message }}
+                        @enderror
+                    </span>
+
+                    {{-- <label for="lots">Image:</label>
                         <input type="file" id="lots" name="lots" value="">
                         <span style="color : red">@error('lots'){{ $message }}@enderror</span> --}}
-                    
-                        {{-- <label for="password">Password:</label>
+
+                    {{-- <label for="password">Password:</label>
                         <input type="password" id="password" name="password"> --}}
-                    
-                        <input type="submit" value="Submit">
-                    </form>
+
+                    <input type="submit" value="SUBMIT">
+                </form>
             </div>
         </div>
     </div>

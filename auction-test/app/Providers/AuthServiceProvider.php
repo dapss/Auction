@@ -33,13 +33,17 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('view-admin-dashboard', function (User $user) {
             return $user->role === 'Admin';
         });
-    
+
         Gate::define('view-user-dashboard', function (User $user) {
             return $user->role === 'Masyarakat';
         });
 
         Gate::define('view-petugas-dashboard', function (User $user) {
             return $user->role === 'Petugas';
+        });
+
+        Gate::define('both', function (User $user) {
+            return in_array($user->role, ['Petugas', 'Admin']);
         });
     }
 }

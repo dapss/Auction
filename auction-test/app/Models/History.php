@@ -11,4 +11,9 @@ class History extends Model
     protected $primaryKey = 'id_history';
     protected $guarded = ['id_history'];
     protected $table = 'tb_history_lelang';
+
+    public function barang()
+    {
+        return $this->belongsTo(ListCrud::class, 'id_barang');
+    }
 }

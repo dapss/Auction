@@ -15,8 +15,8 @@ class CRUD extends Controller
         $status = $request->input('status', 'all');
         if ($status == 'all') {
             $list = listCrud::orderByRaw("CASE WHEN status = 'open' THEN 1 WHEN status = 'closed' THEN 2 ELSE 3 END")
-                            ->orderBy('created_at', 'desc')
-                            ->get();
+                ->orderBy('created_at', 'desc')
+                ->get();
         } else {
             $list = listCrud::where('status', $status)->orderBy('created_at', 'desc')->get();
         }
@@ -26,22 +26,21 @@ class CRUD extends Controller
 
     public function create()
     {
-        if (auth()->user()->role !== 'Petugas') {
-            abort(403, 'Unauthorized');
-        }
         return view('items.add');
     }
 
-    public function store(Request $request) {
+    public function store(Request $request)
+    {
 
         $request->validate([
-            'nama_barang'=>'required',
-            'deskripsi_barang'=>'required',
-            'harga_awal'=>'required',
-            'tanggal'=>'required',
-            'status'=>'required',
-            'lots'=>'required',
-            
+            'nama_barang' => 'required',
+            'deskripsi_barang' => 'required',
+            'harga_awal' => 'required',
+            'auctioneer' => 'required',
+            'tanggal' => 'required',
+            'status' => 'required',
+            'lots' => 'required',
+
         ]);
 
         $input = $request->all();
@@ -52,7 +51,7 @@ class CRUD extends Controller
             $image->move($destinationPath, $profileImage);
             $input['lots'] = "$profileImage";
         }
-        
+
         ListCrud::create($input);
 
         return redirect()->route('dashboard')->with('success', 'Data have been successfuly inserted');
@@ -62,10 +61,10 @@ class CRUD extends Controller
     //     $detail = Detail::find($id);
     //     return view('detail.show', ['detail' => $detail]);
     // }
-    function show(ListCrud $list, $id_barang) 
+    function show(ListCrud $list, $id_barang)
     {
         // $list = ListCrud::find($id_barang);
-        $list = ListCrud::where('id_barang',$id_barang)->get();
+        $list = ListCrud::where('id_barang', $id_barang)->get();
 
         return view('items.detail', compact('list'));
     }
@@ -80,59 +79,70 @@ class CRUD extends Controller
     public function destroy($id)
     {
         $delete = DB::table('tb_barang')
-        ->where('id_barang', $id)
-        ->delete();
+            ->where('id_barang', $id)
+            ->delete();
 
         $delete = DB::table('tb_lelang')
-        ->where('id_barang', $id)
-        ->delete();
+            ->where('id_barang', $id)
+            ->delete();
 
         return redirect()->route('dashboard')->with('success', 'Item deleted successfully');
     }
 
 
-    function edit($id) {
+    function edit($id)
+    {
         // echo $id;
         $row = DB::table('tb_barang')
-        ->where('id_barang', $id)
-        ->first();
+            ->where('id_barang', $id)
+            ->first();
         $data = [
-            'Info'=>$row,
-            'Title'=>'Edit'
+            'Info' => $row,
+            'Title' => 'Edit'
         ];
         return view('items.editPage', $data);
     }
 
-    function update(Request $request, ListCrud $barang) {
+    function update(Request $request, ListCrud $barang)
+    {
         $request->validate([
-            'name'=>'required',
+            'name' => 'required',
             // 'id'=>'required',
-            'description'=>'required',
-            'opening'=>'required',
-            'date'=>'required',
-            'status'=>'required',
+            'description' => 'required',
+            'auctioneer' => 'required',
+            'opening' => 'required',
+            'date' => 'required',
+            'status' => 'required',
             // 'lots'=>'required',
         ]);
 
         $updating = DB::table('tb_barang')
-                        ->where('id_barang', $request->input('id'))
-                        ->update([
-                            'nama_barang'=>$request->input('name'),
-                            'deskripsi_barang'=>$request->input('description'),
-                            'harga_awal'=>$request->input('opening'),
-                            'tanggal'=>$request->input('date'),
-                            'status'=>$request->input('status'),
-                            // 'lots' => $request['lots'],
-                        ]);
+            ->where('id_barang', $request->input('id'))
+            ->update([
+                'nama_barang' => $request->input('name'),
+                'deskripsi_barang' => $request->input('description'),
+                'harga_awal' => $request->input('opening'),
+                'auctioneer' => $request->input('auctioneer'),
+                'tanggal' => $request->input('date'),
+                'status' => $request->input('status'),
+                // 'lots' => $request['lots'],
+            ]);
 
         $updatings = DB::table('tb_lelang')
-                        ->where('id_barang', $request->input('id'))
-                        ->update([
-                            'status'=>$request->input('status'),
-                        ]);
+            ->where('id_barang', $request->input('id'))
+            ->update([
+                'status' => $request->input('status'),
+            ]);
+
+        $updatingss = DB::table('tb_history_lelang')
+            ->where('id_barang', $request->input('id'))
+            ->update([
+                'nama_barang' => $request->input('name'),
+                'auctioneer' => $request->input('auctioneer'),
+            ]);
 
         return redirect('dashboard');
-        
+
     }
 
 }

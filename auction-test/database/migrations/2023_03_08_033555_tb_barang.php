@@ -18,7 +18,8 @@ return new class extends Migration
             $table->string('nama_barang');
             $table->date('tanggal');
             $table->integer('harga_awal');
-            $table->string('deskripsi_barang', 500);
+            $table->text('deskripsi_barang');
+            $table->string('auctioneer');
             $table->string('status');
             $table->string('lots');
             $table->timestamps();
